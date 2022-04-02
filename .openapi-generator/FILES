@@ -11,6 +11,16 @@ configuration.go
 git_push.sh
 go.mod
 go.sum
+model_account_balance.go
+model_account_balance_balance_amount.go
+model_account_balances_response.go
+model_account_detail.go
+model_account_detail_response.go
+model_account_transaction.go
+model_account_transaction_debtor_account.go
+model_account_transaction_response.go
+model_account_transaction_response_transactions.go
+model_account_transaction_transaction_amount.go
 model_account_v2.go
 model_account_v2_status_enum.go
 model_account_v2_status_enum_discovered.go

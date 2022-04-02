@@ -34,7 +34,7 @@ type ApiAccountsBalancesRetrieveRequest struct {
 }
 
 
-func (r ApiAccountsBalancesRetrieveRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAccountsBalancesRetrieveRequest) Execute() (*AccountBalancesResponse, *http.Response, error) {
 	return r.ApiService.AccountsBalancesRetrieveExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *AccountsApiService) AccountsBalancesRetrieve(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsApiService) AccountsBalancesRetrieveExecute(r ApiAccountsBalancesRetrieveRequest) (map[string]interface{}, *http.Response, error) {
+//  @return AccountBalancesResponse
+func (a *AccountsApiService) AccountsBalancesRetrieveExecute(r ApiAccountsBalancesRetrieveRequest) (*AccountBalancesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *AccountBalancesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsApiService.AccountsBalancesRetrieve")
@@ -219,7 +219,7 @@ type ApiAccountsDetailsRetrieveRequest struct {
 }
 
 
-func (r ApiAccountsDetailsRetrieveRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAccountsDetailsRetrieveRequest) Execute() (*AccountDetailResponse, *http.Response, error) {
 	return r.ApiService.AccountsDetailsRetrieveExecute(r)
 }
 
@@ -243,13 +243,13 @@ func (a *AccountsApiService) AccountsDetailsRetrieve(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsApiService) AccountsDetailsRetrieveExecute(r ApiAccountsDetailsRetrieveRequest) (map[string]interface{}, *http.Response, error) {
+//  @return AccountDetailResponse
+func (a *AccountsApiService) AccountsDetailsRetrieveExecute(r ApiAccountsDetailsRetrieveRequest) (*AccountDetailResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *AccountDetailResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsApiService.AccountsDetailsRetrieve")
@@ -414,7 +414,7 @@ func (r ApiAccountsTransactionsRetrieveRequest) DateTo(dateTo string) ApiAccount
 	return r
 }
 
-func (r ApiAccountsTransactionsRetrieveRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiAccountsTransactionsRetrieveRequest) Execute() (*AccountTransactionResponse, *http.Response, error) {
 	return r.ApiService.AccountsTransactionsRetrieveExecute(r)
 }
 
@@ -438,13 +438,13 @@ func (a *AccountsApiService) AccountsTransactionsRetrieve(ctx context.Context, i
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsApiService) AccountsTransactionsRetrieveExecute(r ApiAccountsTransactionsRetrieveRequest) (map[string]interface{}, *http.Response, error) {
+//  @return AccountTransactionResponse
+func (a *AccountsApiService) AccountsTransactionsRetrieveExecute(r ApiAccountsTransactionsRetrieveRequest) (*AccountTransactionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *AccountTransactionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsApiService.AccountsTransactionsRetrieve")

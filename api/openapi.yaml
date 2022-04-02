@@ -125,8 +125,7 @@ paths:
                       balanceType: string
                       referenceDate: 2021-11-19
               schema:
-                additionalProperties: {}
-                type: object
+                $ref: '#/components/schemas/AccountBalancesResponse'
         "400":
           content:
             application/json:
@@ -365,8 +364,7 @@ paths:
                       product: string
                       cashAccountType: string
               schema:
-                additionalProperties: {}
-                type: object
+                $ref: '#/components/schemas/AccountDetailResponse'
         "400":
           content:
             application/json:
@@ -650,8 +648,7 @@ paths:
                         valueDate: date
                         remittanceInformationUnstructured: string
               schema:
-                additionalProperties: {}
-                type: object
+                $ref: '#/components/schemas/AccountTransactionResponse'
         "400":
           content:
             application/json:
@@ -3194,6 +3191,168 @@ components:
         status:
           $ref: '#/components/schemas/AccountV2StatusEnum'
       type: object
+    AccountBalance:
+      description: Account balance details
+      example:
+        balanceType: balanceType
+        balanceAmount:
+          amount: amount
+          currency: currency
+        referenceDate: referenceDate
+      properties:
+        balanceAmount:
+          $ref: '#/components/schemas/AccountBalance_balanceAmount'
+        balanceType:
+          type: string
+        referenceDate:
+          format: YYYY-MM-DD
+          type: string
+      type: object
+    AccountDetail:
+      example:
+        cashAccountType: cashAccountType
+        resourceId: resourceId
+        product: product
+        ownerName: ownerName
+        iban: iban
+        name: name
+        currency: currency
+      properties:
+        resourceId:
+          type: string
+        iban:
+          type: string
+        currency:
+          type: string
+        ownerName:
+          type: string
+        name:
+          type: string
+        product:
+          type: string
+        cashAccountType:
+          type: string
+      type: object
+    AccountDetailResponse:
+      example:
+        account:
+          cashAccountType: cashAccountType
+          resourceId: resourceId
+          product: product
+          ownerName: ownerName
+          iban: iban
+          name: name
+          currency: currency
+      properties:
+        account:
+          $ref: '#/components/schemas/AccountDetail'
+      type: object
+    AccountTransaction:
+      example:
+        debtorAccount:
+          iban: iban
+        transactionAmount:
+          amount: amount
+          currency: currency
+        bankTransactionCode: bankTransactionCode
+        debtorName: debtorName
+        bookingDate: 2000-01-23T04:56:07.000+00:00
+        valueDate: 2000-01-23T04:56:07.000+00:00
+        remittanceInformationUnstructured: remittanceInformationUnstructured
+        transactionId: transactionId
+      properties:
+        transactionId:
+          type: string
+        debtorName:
+          type: string
+        debtorAccount:
+          $ref: '#/components/schemas/AccountTransaction_debtorAccount'
+        transactionAmount:
+          $ref: '#/components/schemas/AccountTransaction_transactionAmount'
+        bankTransactionCode:
+          type: string
+        bookingDate:
+          format: date-time
+          type: string
+        valueDate:
+          format: date-time
+          type: string
+        remittanceInformationUnstructured:
+          type: string
+      type: object
+    AccountTransactionResponse:
+      example:
+        transactions:
+          booked:
+          - debtorAccount:
+              iban: iban
+            transactionAmount:
+              amount: amount
+              currency: currency
+            bankTransactionCode: bankTransactionCode
+            debtorName: debtorName
+            bookingDate: 2000-01-23T04:56:07.000+00:00
+            valueDate: 2000-01-23T04:56:07.000+00:00
+            remittanceInformationUnstructured: remittanceInformationUnstructured
+            transactionId: transactionId
+          - debtorAccount:
+              iban: iban
+            transactionAmount:
+              amount: amount
+              currency: currency
+            bankTransactionCode: bankTransactionCode
+            debtorName: debtorName
+            bookingDate: 2000-01-23T04:56:07.000+00:00
+            valueDate: 2000-01-23T04:56:07.000+00:00
+            remittanceInformationUnstructured: remittanceInformationUnstructured
+            transactionId: transactionId
+          pending:
+          - debtorAccount:
+              iban: iban
+            transactionAmount:
+              amount: amount
+              currency: currency
+            bankTransactionCode: bankTransactionCode
+            debtorName: debtorName
+            bookingDate: 2000-01-23T04:56:07.000+00:00
+            valueDate: 2000-01-23T04:56:07.000+00:00
+            remittanceInformationUnstructured: remittanceInformationUnstructured
+            transactionId: transactionId
+          - debtorAccount:
+              iban: iban
+            transactionAmount:
+              amount: amount
+              currency: currency
+            bankTransactionCode: bankTransactionCode
+            debtorName: debtorName
+            bookingDate: 2000-01-23T04:56:07.000+00:00
+            valueDate: 2000-01-23T04:56:07.000+00:00
+            remittanceInformationUnstructured: remittanceInformationUnstructured
+            transactionId: transactionId
+      properties:
+        transactions:
+          $ref: '#/components/schemas/AccountTransactionResponse_transactions'
+      type: object
+    AccountBalancesResponse:
+      example:
+        balances:
+        - balanceType: balanceType
+          balanceAmount:
+            amount: amount
+            currency: currency
+          referenceDate: referenceDate
+        - balanceType: balanceType
+          balanceAmount:
+            amount: amount
+            currency: currency
+          referenceDate: referenceDate
+      properties:
+        balances:
+          description: Account balances
+          items:
+            $ref: '#/components/schemas/AccountBalance'
+          type: array
+      type: object
     AccountV2StatusEnumDiscovered:
       properties:
         DISCOVERED:
@@ -3271,7 +3430,7 @@ components:
           type: string
         countries:
           items:
-            type: string
+            $ref: '#/components/schemas/CountryEnum'
           type: array
         logo:
           type: string
@@ -4219,6 +4378,91 @@ components:
       - $ref: '#/components/schemas/Status1c5EnumGivingConsent'
       readOnly: true
       title: Requisition status
+    AccountBalance_balanceAmount:
+      example:
+        amount: amount
+        currency: currency
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+      type: object
+    AccountTransaction_debtorAccount:
+      example:
+        iban: iban
+      properties:
+        iban:
+          type: string
+      type: object
+    AccountTransaction_transactionAmount:
+      example:
+        amount: amount
+        currency: currency
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+      type: object
+    AccountTransactionResponse_transactions:
+      example:
+        booked:
+        - debtorAccount:
+            iban: iban
+          transactionAmount:
+            amount: amount
+            currency: currency
+          bankTransactionCode: bankTransactionCode
+          debtorName: debtorName
+          bookingDate: 2000-01-23T04:56:07.000+00:00
+          valueDate: 2000-01-23T04:56:07.000+00:00
+          remittanceInformationUnstructured: remittanceInformationUnstructured
+          transactionId: transactionId
+        - debtorAccount:
+            iban: iban
+          transactionAmount:
+            amount: amount
+            currency: currency
+          bankTransactionCode: bankTransactionCode
+          debtorName: debtorName
+          bookingDate: 2000-01-23T04:56:07.000+00:00
+          valueDate: 2000-01-23T04:56:07.000+00:00
+          remittanceInformationUnstructured: remittanceInformationUnstructured
+          transactionId: transactionId
+        pending:
+        - debtorAccount:
+            iban: iban
+          transactionAmount:
+            amount: amount
+            currency: currency
+          bankTransactionCode: bankTransactionCode
+          debtorName: debtorName
+          bookingDate: 2000-01-23T04:56:07.000+00:00
+          valueDate: 2000-01-23T04:56:07.000+00:00
+          remittanceInformationUnstructured: remittanceInformationUnstructured
+          transactionId: transactionId
+        - debtorAccount:
+            iban: iban
+          transactionAmount:
+            amount: amount
+            currency: currency
+          bankTransactionCode: bankTransactionCode
+          debtorName: debtorName
+          bookingDate: 2000-01-23T04:56:07.000+00:00
+          valueDate: 2000-01-23T04:56:07.000+00:00
+          remittanceInformationUnstructured: remittanceInformationUnstructured
+          transactionId: transactionId
+      properties:
+        booked:
+          items:
+            $ref: '#/components/schemas/AccountTransaction'
+          type: array
+        pending:
+          items:
+            $ref: '#/components/schemas/AccountTransaction'
+          type: array
+      type: object
   securitySchemes:
     jwtAuth:
       bearerFormat: Bearer

@@ -20,7 +20,7 @@ type Aspsp struct {
 	Name string `json:"name"`
 	Bic *string `json:"bic,omitempty"`
 	TransactionTotalDays *string `json:"transaction_total_days,omitempty"`
-	Countries []string `json:"countries"`
+	Countries []CountryEnum `json:"countries"`
 	Logo string `json:"logo"`
 }
 
@@ -28,7 +28,7 @@ type Aspsp struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAspsp(id string, name string, countries []string, logo string) *Aspsp {
+func NewAspsp(id string, name string, countries []CountryEnum, logo string) *Aspsp {
 	this := Aspsp{}
 	this.Id = id
 	this.Name = name
@@ -162,9 +162,9 @@ func (o *Aspsp) SetTransactionTotalDays(v string) {
 }
 
 // GetCountries returns the Countries field value
-func (o *Aspsp) GetCountries() []string {
+func (o *Aspsp) GetCountries() []CountryEnum {
 	if o == nil {
-		var ret []string
+		var ret []CountryEnum
 		return ret
 	}
 
@@ -173,7 +173,7 @@ func (o *Aspsp) GetCountries() []string {
 
 // GetCountriesOk returns a tuple with the Countries field value
 // and a boolean to check if the value has been set.
-func (o *Aspsp) GetCountriesOk() ([]string, bool) {
+func (o *Aspsp) GetCountriesOk() ([]CountryEnum, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -181,7 +181,7 @@ func (o *Aspsp) GetCountriesOk() ([]string, bool) {
 }
 
 // SetCountries sets field value
-func (o *Aspsp) SetCountries(v []string) {
+func (o *Aspsp) SetCountries(v []CountryEnum) {
 	o.Countries = v
 }
 
