@@ -1,4 +1,3 @@
-.gitignore
 .travis.yml
 api/openapi.yaml
 api_accounts.go
@@ -14,6 +13,12 @@ go.mod
 go.sum
 model_account_v2.go
 model_account_v2_status_enum.go
+model_account_v2_status_enum_discovered.go
+model_account_v2_status_enum_error.go
+model_account_v2_status_enum_expired.go
+model_account_v2_status_enum_processing.go
+model_account_v2_status_enum_ready.go
+model_account_v2_status_enum_suspended.go
 model_aspsp.go
 model_country_enum.go
 model_end_user_agreement.go
@@ -32,5 +37,13 @@ model_spectacular_jwt_obtain.go
 model_spectacular_jwt_refresh.go
 model_spectacular_requisition_v2.go
 model_status1c5_enum.go
+model_status1c5_enum_created.go
+model_status1c5_enum_expired.go
+model_status1c5_enum_giving_consent.go
+model_status1c5_enum_granting_access.go
+model_status1c5_enum_linked.go
+model_status1c5_enum_rejected.go
+model_status1c5_enum_selecting_accounts.go
+model_status1c5_enum_undergoing_authentication.go
 response.go
 utils.go

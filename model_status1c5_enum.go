@@ -15,90 +15,283 @@ import (
 	"fmt"
 )
 
-// Status1c5Enum Status of requisition
-type Status1c5Enum string
-
-// List of Status1c5Enum
-const (
-	STATUS1C5ENUM_CREATED Status1c5Enum = "CREATED"
-	STATUS1C5ENUM_CR Status1c5Enum = "CR"
-	STATUS1C5ENUM_LINKED Status1c5Enum = "LINKED"
-	STATUS1C5ENUM_LN Status1c5Enum = "LN"
-	STATUS1C5ENUM_EXPIRED Status1c5Enum = "EXPIRED"
-	STATUS1C5ENUM_EX Status1c5Enum = "EX"
-	STATUS1C5ENUM_REJECTED Status1c5Enum = "REJECTED"
-	STATUS1C5ENUM_RJ Status1c5Enum = "RJ"
-	STATUS1C5ENUM_UNDERGOING_AUTHENTICATION Status1c5Enum = "UNDERGOING_AUTHENTICATION"
-	STATUS1C5ENUM_UA Status1c5Enum = "UA"
-	STATUS1C5ENUM_GRANTING_ACCESS Status1c5Enum = "GRANTING_ACCESS"
-	STATUS1C5ENUM_GA Status1c5Enum = "GA"
-	STATUS1C5ENUM_SELECTING_ACCOUNTS Status1c5Enum = "SELECTING_ACCOUNTS"
-	STATUS1C5ENUM_SA Status1c5Enum = "SA"
-	STATUS1C5ENUM_GIVING_CONSENT Status1c5Enum = "GIVING_CONSENT"
-	STATUS1C5ENUM_GC Status1c5Enum = "GC"
-)
-
-// All allowed values of Status1c5Enum enum
-var AllowedStatus1c5EnumEnumValues = []Status1c5Enum{
-	"CREATED",
-	"CR",
-	"LINKED",
-	"LN",
-	"EXPIRED",
-	"EX",
-	"REJECTED",
-	"RJ",
-	"UNDERGOING_AUTHENTICATION",
-	"UA",
-	"GRANTING_ACCESS",
-	"GA",
-	"SELECTING_ACCOUNTS",
-	"SA",
-	"GIVING_CONSENT",
-	"GC",
+// Status1c5Enum - Status of requisition
+type Status1c5Enum struct {
+	Status1c5EnumCreated *Status1c5EnumCreated
+	Status1c5EnumExpired *Status1c5EnumExpired
+	Status1c5EnumGivingConsent *Status1c5EnumGivingConsent
+	Status1c5EnumGrantingAccess *Status1c5EnumGrantingAccess
+	Status1c5EnumLinked *Status1c5EnumLinked
+	Status1c5EnumRejected *Status1c5EnumRejected
+	Status1c5EnumSelectingAccounts *Status1c5EnumSelectingAccounts
+	Status1c5EnumUndergoingAuthentication *Status1c5EnumUndergoingAuthentication
 }
 
-func (v *Status1c5Enum) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
+// Status1c5EnumCreatedAsStatus1c5Enum is a convenience function that returns Status1c5EnumCreated wrapped in Status1c5Enum
+func Status1c5EnumCreatedAsStatus1c5Enum(v *Status1c5EnumCreated) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumCreated: v,
 	}
-	enumTypeValue := Status1c5Enum(value)
-	for _, existing := range AllowedStatus1c5EnumEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
+}
+
+// Status1c5EnumExpiredAsStatus1c5Enum is a convenience function that returns Status1c5EnumExpired wrapped in Status1c5Enum
+func Status1c5EnumExpiredAsStatus1c5Enum(v *Status1c5EnumExpired) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumExpired: v,
+	}
+}
+
+// Status1c5EnumGivingConsentAsStatus1c5Enum is a convenience function that returns Status1c5EnumGivingConsent wrapped in Status1c5Enum
+func Status1c5EnumGivingConsentAsStatus1c5Enum(v *Status1c5EnumGivingConsent) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumGivingConsent: v,
+	}
+}
+
+// Status1c5EnumGrantingAccessAsStatus1c5Enum is a convenience function that returns Status1c5EnumGrantingAccess wrapped in Status1c5Enum
+func Status1c5EnumGrantingAccessAsStatus1c5Enum(v *Status1c5EnumGrantingAccess) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumGrantingAccess: v,
+	}
+}
+
+// Status1c5EnumLinkedAsStatus1c5Enum is a convenience function that returns Status1c5EnumLinked wrapped in Status1c5Enum
+func Status1c5EnumLinkedAsStatus1c5Enum(v *Status1c5EnumLinked) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumLinked: v,
+	}
+}
+
+// Status1c5EnumRejectedAsStatus1c5Enum is a convenience function that returns Status1c5EnumRejected wrapped in Status1c5Enum
+func Status1c5EnumRejectedAsStatus1c5Enum(v *Status1c5EnumRejected) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumRejected: v,
+	}
+}
+
+// Status1c5EnumSelectingAccountsAsStatus1c5Enum is a convenience function that returns Status1c5EnumSelectingAccounts wrapped in Status1c5Enum
+func Status1c5EnumSelectingAccountsAsStatus1c5Enum(v *Status1c5EnumSelectingAccounts) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumSelectingAccounts: v,
+	}
+}
+
+// Status1c5EnumUndergoingAuthenticationAsStatus1c5Enum is a convenience function that returns Status1c5EnumUndergoingAuthentication wrapped in Status1c5Enum
+func Status1c5EnumUndergoingAuthenticationAsStatus1c5Enum(v *Status1c5EnumUndergoingAuthentication) Status1c5Enum {
+	return Status1c5Enum{
+		Status1c5EnumUndergoingAuthentication: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *Status1c5Enum) UnmarshalJSON(data []byte) error {
+	var err error
+	// this object is nullable so check if the payload is null or empty string
+	if string(data) == "" || string(data) == "{}" {
+		return nil
+	}
+
+	match := 0
+	// try to unmarshal data into Status1c5EnumCreated
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumCreated)
+	if err == nil {
+		jsonStatus1c5EnumCreated, _ := json.Marshal(dst.Status1c5EnumCreated)
+		if string(jsonStatus1c5EnumCreated) == "{}" { // empty struct
+			dst.Status1c5EnumCreated = nil
+		} else {
+			match++
 		}
-	}
-
-	return fmt.Errorf("%+v is not a valid Status1c5Enum", value)
-}
-
-// NewStatus1c5EnumFromValue returns a pointer to a valid Status1c5Enum
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewStatus1c5EnumFromValue(v string) (*Status1c5Enum, error) {
-	ev := Status1c5Enum(v)
-	if ev.IsValid() {
-		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for Status1c5Enum: valid values are %v", v, AllowedStatus1c5EnumEnumValues)
+		dst.Status1c5EnumCreated = nil
 	}
-}
 
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v Status1c5Enum) IsValid() bool {
-	for _, existing := range AllowedStatus1c5EnumEnumValues {
-		if existing == v {
-			return true
+	// try to unmarshal data into Status1c5EnumExpired
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumExpired)
+	if err == nil {
+		jsonStatus1c5EnumExpired, _ := json.Marshal(dst.Status1c5EnumExpired)
+		if string(jsonStatus1c5EnumExpired) == "{}" { // empty struct
+			dst.Status1c5EnumExpired = nil
+		} else {
+			match++
 		}
+	} else {
+		dst.Status1c5EnumExpired = nil
 	}
-	return false
+
+	// try to unmarshal data into Status1c5EnumGivingConsent
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumGivingConsent)
+	if err == nil {
+		jsonStatus1c5EnumGivingConsent, _ := json.Marshal(dst.Status1c5EnumGivingConsent)
+		if string(jsonStatus1c5EnumGivingConsent) == "{}" { // empty struct
+			dst.Status1c5EnumGivingConsent = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Status1c5EnumGivingConsent = nil
+	}
+
+	// try to unmarshal data into Status1c5EnumGrantingAccess
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumGrantingAccess)
+	if err == nil {
+		jsonStatus1c5EnumGrantingAccess, _ := json.Marshal(dst.Status1c5EnumGrantingAccess)
+		if string(jsonStatus1c5EnumGrantingAccess) == "{}" { // empty struct
+			dst.Status1c5EnumGrantingAccess = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Status1c5EnumGrantingAccess = nil
+	}
+
+	// try to unmarshal data into Status1c5EnumLinked
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumLinked)
+	if err == nil {
+		jsonStatus1c5EnumLinked, _ := json.Marshal(dst.Status1c5EnumLinked)
+		if string(jsonStatus1c5EnumLinked) == "{}" { // empty struct
+			dst.Status1c5EnumLinked = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Status1c5EnumLinked = nil
+	}
+
+	// try to unmarshal data into Status1c5EnumRejected
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumRejected)
+	if err == nil {
+		jsonStatus1c5EnumRejected, _ := json.Marshal(dst.Status1c5EnumRejected)
+		if string(jsonStatus1c5EnumRejected) == "{}" { // empty struct
+			dst.Status1c5EnumRejected = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Status1c5EnumRejected = nil
+	}
+
+	// try to unmarshal data into Status1c5EnumSelectingAccounts
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumSelectingAccounts)
+	if err == nil {
+		jsonStatus1c5EnumSelectingAccounts, _ := json.Marshal(dst.Status1c5EnumSelectingAccounts)
+		if string(jsonStatus1c5EnumSelectingAccounts) == "{}" { // empty struct
+			dst.Status1c5EnumSelectingAccounts = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Status1c5EnumSelectingAccounts = nil
+	}
+
+	// try to unmarshal data into Status1c5EnumUndergoingAuthentication
+	err = newStrictDecoder(data).Decode(&dst.Status1c5EnumUndergoingAuthentication)
+	if err == nil {
+		jsonStatus1c5EnumUndergoingAuthentication, _ := json.Marshal(dst.Status1c5EnumUndergoingAuthentication)
+		if string(jsonStatus1c5EnumUndergoingAuthentication) == "{}" { // empty struct
+			dst.Status1c5EnumUndergoingAuthentication = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.Status1c5EnumUndergoingAuthentication = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.Status1c5EnumCreated = nil
+		dst.Status1c5EnumExpired = nil
+		dst.Status1c5EnumGivingConsent = nil
+		dst.Status1c5EnumGrantingAccess = nil
+		dst.Status1c5EnumLinked = nil
+		dst.Status1c5EnumRejected = nil
+		dst.Status1c5EnumSelectingAccounts = nil
+		dst.Status1c5EnumUndergoingAuthentication = nil
+
+		return fmt.Errorf("Data matches more than one schema in oneOf(Status1c5Enum)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("Data failed to match schemas in oneOf(Status1c5Enum)")
+	}
 }
 
-// Ptr returns reference to Status1c5Enum value
-func (v Status1c5Enum) Ptr() *Status1c5Enum {
-	return &v
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src Status1c5Enum) MarshalJSON() ([]byte, error) {
+	if src.Status1c5EnumCreated != nil {
+		return json.Marshal(&src.Status1c5EnumCreated)
+	}
+
+	if src.Status1c5EnumExpired != nil {
+		return json.Marshal(&src.Status1c5EnumExpired)
+	}
+
+	if src.Status1c5EnumGivingConsent != nil {
+		return json.Marshal(&src.Status1c5EnumGivingConsent)
+	}
+
+	if src.Status1c5EnumGrantingAccess != nil {
+		return json.Marshal(&src.Status1c5EnumGrantingAccess)
+	}
+
+	if src.Status1c5EnumLinked != nil {
+		return json.Marshal(&src.Status1c5EnumLinked)
+	}
+
+	if src.Status1c5EnumRejected != nil {
+		return json.Marshal(&src.Status1c5EnumRejected)
+	}
+
+	if src.Status1c5EnumSelectingAccounts != nil {
+		return json.Marshal(&src.Status1c5EnumSelectingAccounts)
+	}
+
+	if src.Status1c5EnumUndergoingAuthentication != nil {
+		return json.Marshal(&src.Status1c5EnumUndergoingAuthentication)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *Status1c5Enum) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.Status1c5EnumCreated != nil {
+		return obj.Status1c5EnumCreated
+	}
+
+	if obj.Status1c5EnumExpired != nil {
+		return obj.Status1c5EnumExpired
+	}
+
+	if obj.Status1c5EnumGivingConsent != nil {
+		return obj.Status1c5EnumGivingConsent
+	}
+
+	if obj.Status1c5EnumGrantingAccess != nil {
+		return obj.Status1c5EnumGrantingAccess
+	}
+
+	if obj.Status1c5EnumLinked != nil {
+		return obj.Status1c5EnumLinked
+	}
+
+	if obj.Status1c5EnumRejected != nil {
+		return obj.Status1c5EnumRejected
+	}
+
+	if obj.Status1c5EnumSelectingAccounts != nil {
+		return obj.Status1c5EnumSelectingAccounts
+	}
+
+	if obj.Status1c5EnumUndergoingAuthentication != nil {
+		return obj.Status1c5EnumUndergoingAuthentication
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableStatus1c5Enum struct {
@@ -136,4 +329,5 @@ func (v *NullableStatus1c5Enum) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
 

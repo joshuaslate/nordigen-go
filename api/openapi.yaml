@@ -3194,15 +3194,60 @@ components:
         status:
           $ref: '#/components/schemas/AccountV2StatusEnum'
       type: object
-    AccountV2StatusEnum:
-      enum:
+    AccountV2StatusEnumDiscovered:
+      properties:
+        DISCOVERED:
+          type: string
+      required:
       - DISCOVERED
+      type: object
+    AccountV2StatusEnumProcessing:
+      properties:
+        PROCESSING:
+          type: string
+      required:
       - PROCESSING
+      type: object
+    AccountV2StatusEnumError:
+      properties:
+        ERROR:
+          type: string
+      required:
       - ERROR
+      type: object
+    AccountV2StatusEnumExpired:
+      properties:
+        EXPIRED:
+          type: string
+      required:
       - EXPIRED
+      type: object
+    AccountV2StatusEnumReady:
+      properties:
+        READY:
+          type: string
+      required:
       - READY
+      type: object
+    AccountV2StatusEnumSuspended:
+      properties:
+        SUSPENDED:
+          type: string
+      required:
       - SUSPENDED
-      type: string
+      type: object
+    AccountV2StatusEnum:
+      description: Status of account
+      nullable: true
+      oneOf:
+      - $ref: '#/components/schemas/AccountV2StatusEnumDiscovered'
+      - $ref: '#/components/schemas/AccountV2StatusEnumProcessing'
+      - $ref: '#/components/schemas/AccountV2StatusEnumError'
+      - $ref: '#/components/schemas/AccountV2StatusEnumExpired'
+      - $ref: '#/components/schemas/AccountV2StatusEnumReady'
+      - $ref: '#/components/schemas/AccountV2StatusEnumSuspended'
+      readOnly: true
+      title: AccountV2 status
     Aspsp:
       description: Represents an ASPSP.
       example:
@@ -4024,29 +4069,156 @@ components:
       - institution_id
       - redirect
       type: object
+    Status1c5EnumCreated:
+      properties:
+        short:
+          enum:
+          - CR
+          type: string
+        long:
+          enum:
+          - CREATED
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumLinked:
+      properties:
+        short:
+          enum:
+          - LN
+          type: string
+        long:
+          enum:
+          - LINKED
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumExpired:
+      properties:
+        short:
+          enum:
+          - EX
+          type: string
+        long:
+          enum:
+          - EXPIRED
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumRejected:
+      properties:
+        short:
+          enum:
+          - RJ
+          type: string
+        long:
+          enum:
+          - REJECTED
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumUndergoingAuthentication:
+      properties:
+        short:
+          enum:
+          - UA
+          type: string
+        long:
+          enum:
+          - UNDERGOING_AUTHENTICATION
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumGrantingAccess:
+      properties:
+        short:
+          enum:
+          - GA
+          type: string
+        long:
+          enum:
+          - GRANTING_ACCESS
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumSelectingAccounts:
+      properties:
+        short:
+          enum:
+          - SA
+          type: string
+        long:
+          enum:
+          - SELECTING_ACCOUNTS
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
+    Status1c5EnumGivingConsent:
+      properties:
+        short:
+          enum:
+          - GC
+          type: string
+        long:
+          enum:
+          - GIVING_CONSENT
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - long
+      - short
+      type: object
     Status1c5Enum:
       description: Status of requisition
-      enum:
-      - CREATED
-      - CR
-      - LINKED
-      - LN
-      - EXPIRED
-      - EX
-      - REJECTED
-      - RJ
-      - UNDERGOING_AUTHENTICATION
-      - UA
-      - GRANTING_ACCESS
-      - GA
-      - SELECTING_ACCOUNTS
-      - SA
-      - GIVING_CONSENT
-      - GC
       nullable: true
+      oneOf:
+      - $ref: '#/components/schemas/Status1c5EnumCreated'
+      - $ref: '#/components/schemas/Status1c5EnumExpired'
+      - $ref: '#/components/schemas/Status1c5EnumLinked'
+      - $ref: '#/components/schemas/Status1c5EnumRejected'
+      - $ref: '#/components/schemas/Status1c5EnumUndergoingAuthentication'
+      - $ref: '#/components/schemas/Status1c5EnumGrantingAccess'
+      - $ref: '#/components/schemas/Status1c5EnumSelectingAccounts'
+      - $ref: '#/components/schemas/Status1c5EnumGivingConsent'
       readOnly: true
       title: Requisition status
-      type: string
   securitySchemes:
     jwtAuth:
       bearerFormat: Bearer

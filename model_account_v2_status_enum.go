@@ -15,70 +15,223 @@ import (
 	"fmt"
 )
 
-// AccountV2StatusEnum the model 'AccountV2StatusEnum'
-type AccountV2StatusEnum string
-
-// List of AccountV2StatusEnum
-const (
-	ACCOUNTV2STATUSENUM_DISCOVERED AccountV2StatusEnum = "DISCOVERED"
-	ACCOUNTV2STATUSENUM_PROCESSING AccountV2StatusEnum = "PROCESSING"
-	ACCOUNTV2STATUSENUM_ERROR AccountV2StatusEnum = "ERROR"
-	ACCOUNTV2STATUSENUM_EXPIRED AccountV2StatusEnum = "EXPIRED"
-	ACCOUNTV2STATUSENUM_READY AccountV2StatusEnum = "READY"
-	ACCOUNTV2STATUSENUM_SUSPENDED AccountV2StatusEnum = "SUSPENDED"
-)
-
-// All allowed values of AccountV2StatusEnum enum
-var AllowedAccountV2StatusEnumEnumValues = []AccountV2StatusEnum{
-	"DISCOVERED",
-	"PROCESSING",
-	"ERROR",
-	"EXPIRED",
-	"READY",
-	"SUSPENDED",
+// AccountV2StatusEnum - Status of account
+type AccountV2StatusEnum struct {
+	AccountV2StatusEnumDiscovered *AccountV2StatusEnumDiscovered
+	AccountV2StatusEnumError *AccountV2StatusEnumError
+	AccountV2StatusEnumExpired *AccountV2StatusEnumExpired
+	AccountV2StatusEnumProcessing *AccountV2StatusEnumProcessing
+	AccountV2StatusEnumReady *AccountV2StatusEnumReady
+	AccountV2StatusEnumSuspended *AccountV2StatusEnumSuspended
 }
 
-func (v *AccountV2StatusEnum) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
+// AccountV2StatusEnumDiscoveredAsAccountV2StatusEnum is a convenience function that returns AccountV2StatusEnumDiscovered wrapped in AccountV2StatusEnum
+func AccountV2StatusEnumDiscoveredAsAccountV2StatusEnum(v *AccountV2StatusEnumDiscovered) AccountV2StatusEnum {
+	return AccountV2StatusEnum{
+		AccountV2StatusEnumDiscovered: v,
 	}
-	enumTypeValue := AccountV2StatusEnum(value)
-	for _, existing := range AllowedAccountV2StatusEnumEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
+}
+
+// AccountV2StatusEnumErrorAsAccountV2StatusEnum is a convenience function that returns AccountV2StatusEnumError wrapped in AccountV2StatusEnum
+func AccountV2StatusEnumErrorAsAccountV2StatusEnum(v *AccountV2StatusEnumError) AccountV2StatusEnum {
+	return AccountV2StatusEnum{
+		AccountV2StatusEnumError: v,
+	}
+}
+
+// AccountV2StatusEnumExpiredAsAccountV2StatusEnum is a convenience function that returns AccountV2StatusEnumExpired wrapped in AccountV2StatusEnum
+func AccountV2StatusEnumExpiredAsAccountV2StatusEnum(v *AccountV2StatusEnumExpired) AccountV2StatusEnum {
+	return AccountV2StatusEnum{
+		AccountV2StatusEnumExpired: v,
+	}
+}
+
+// AccountV2StatusEnumProcessingAsAccountV2StatusEnum is a convenience function that returns AccountV2StatusEnumProcessing wrapped in AccountV2StatusEnum
+func AccountV2StatusEnumProcessingAsAccountV2StatusEnum(v *AccountV2StatusEnumProcessing) AccountV2StatusEnum {
+	return AccountV2StatusEnum{
+		AccountV2StatusEnumProcessing: v,
+	}
+}
+
+// AccountV2StatusEnumReadyAsAccountV2StatusEnum is a convenience function that returns AccountV2StatusEnumReady wrapped in AccountV2StatusEnum
+func AccountV2StatusEnumReadyAsAccountV2StatusEnum(v *AccountV2StatusEnumReady) AccountV2StatusEnum {
+	return AccountV2StatusEnum{
+		AccountV2StatusEnumReady: v,
+	}
+}
+
+// AccountV2StatusEnumSuspendedAsAccountV2StatusEnum is a convenience function that returns AccountV2StatusEnumSuspended wrapped in AccountV2StatusEnum
+func AccountV2StatusEnumSuspendedAsAccountV2StatusEnum(v *AccountV2StatusEnumSuspended) AccountV2StatusEnum {
+	return AccountV2StatusEnum{
+		AccountV2StatusEnumSuspended: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *AccountV2StatusEnum) UnmarshalJSON(data []byte) error {
+	var err error
+	// this object is nullable so check if the payload is null or empty string
+	if string(data) == "" || string(data) == "{}" {
+		return nil
+	}
+
+	match := 0
+	// try to unmarshal data into AccountV2StatusEnumDiscovered
+	err = newStrictDecoder(data).Decode(&dst.AccountV2StatusEnumDiscovered)
+	if err == nil {
+		jsonAccountV2StatusEnumDiscovered, _ := json.Marshal(dst.AccountV2StatusEnumDiscovered)
+		if string(jsonAccountV2StatusEnumDiscovered) == "{}" { // empty struct
+			dst.AccountV2StatusEnumDiscovered = nil
+		} else {
+			match++
 		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AccountV2StatusEnum", value)
-}
-
-// NewAccountV2StatusEnumFromValue returns a pointer to a valid AccountV2StatusEnum
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewAccountV2StatusEnumFromValue(v string) (*AccountV2StatusEnum, error) {
-	ev := AccountV2StatusEnum(v)
-	if ev.IsValid() {
-		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for AccountV2StatusEnum: valid values are %v", v, AllowedAccountV2StatusEnumEnumValues)
+		dst.AccountV2StatusEnumDiscovered = nil
 	}
-}
 
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v AccountV2StatusEnum) IsValid() bool {
-	for _, existing := range AllowedAccountV2StatusEnumEnumValues {
-		if existing == v {
-			return true
+	// try to unmarshal data into AccountV2StatusEnumError
+	err = newStrictDecoder(data).Decode(&dst.AccountV2StatusEnumError)
+	if err == nil {
+		jsonAccountV2StatusEnumError, _ := json.Marshal(dst.AccountV2StatusEnumError)
+		if string(jsonAccountV2StatusEnumError) == "{}" { // empty struct
+			dst.AccountV2StatusEnumError = nil
+		} else {
+			match++
 		}
+	} else {
+		dst.AccountV2StatusEnumError = nil
 	}
-	return false
+
+	// try to unmarshal data into AccountV2StatusEnumExpired
+	err = newStrictDecoder(data).Decode(&dst.AccountV2StatusEnumExpired)
+	if err == nil {
+		jsonAccountV2StatusEnumExpired, _ := json.Marshal(dst.AccountV2StatusEnumExpired)
+		if string(jsonAccountV2StatusEnumExpired) == "{}" { // empty struct
+			dst.AccountV2StatusEnumExpired = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AccountV2StatusEnumExpired = nil
+	}
+
+	// try to unmarshal data into AccountV2StatusEnumProcessing
+	err = newStrictDecoder(data).Decode(&dst.AccountV2StatusEnumProcessing)
+	if err == nil {
+		jsonAccountV2StatusEnumProcessing, _ := json.Marshal(dst.AccountV2StatusEnumProcessing)
+		if string(jsonAccountV2StatusEnumProcessing) == "{}" { // empty struct
+			dst.AccountV2StatusEnumProcessing = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AccountV2StatusEnumProcessing = nil
+	}
+
+	// try to unmarshal data into AccountV2StatusEnumReady
+	err = newStrictDecoder(data).Decode(&dst.AccountV2StatusEnumReady)
+	if err == nil {
+		jsonAccountV2StatusEnumReady, _ := json.Marshal(dst.AccountV2StatusEnumReady)
+		if string(jsonAccountV2StatusEnumReady) == "{}" { // empty struct
+			dst.AccountV2StatusEnumReady = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AccountV2StatusEnumReady = nil
+	}
+
+	// try to unmarshal data into AccountV2StatusEnumSuspended
+	err = newStrictDecoder(data).Decode(&dst.AccountV2StatusEnumSuspended)
+	if err == nil {
+		jsonAccountV2StatusEnumSuspended, _ := json.Marshal(dst.AccountV2StatusEnumSuspended)
+		if string(jsonAccountV2StatusEnumSuspended) == "{}" { // empty struct
+			dst.AccountV2StatusEnumSuspended = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.AccountV2StatusEnumSuspended = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AccountV2StatusEnumDiscovered = nil
+		dst.AccountV2StatusEnumError = nil
+		dst.AccountV2StatusEnumExpired = nil
+		dst.AccountV2StatusEnumProcessing = nil
+		dst.AccountV2StatusEnumReady = nil
+		dst.AccountV2StatusEnumSuspended = nil
+
+		return fmt.Errorf("Data matches more than one schema in oneOf(AccountV2StatusEnum)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("Data failed to match schemas in oneOf(AccountV2StatusEnum)")
+	}
 }
 
-// Ptr returns reference to AccountV2StatusEnum value
-func (v AccountV2StatusEnum) Ptr() *AccountV2StatusEnum {
-	return &v
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src AccountV2StatusEnum) MarshalJSON() ([]byte, error) {
+	if src.AccountV2StatusEnumDiscovered != nil {
+		return json.Marshal(&src.AccountV2StatusEnumDiscovered)
+	}
+
+	if src.AccountV2StatusEnumError != nil {
+		return json.Marshal(&src.AccountV2StatusEnumError)
+	}
+
+	if src.AccountV2StatusEnumExpired != nil {
+		return json.Marshal(&src.AccountV2StatusEnumExpired)
+	}
+
+	if src.AccountV2StatusEnumProcessing != nil {
+		return json.Marshal(&src.AccountV2StatusEnumProcessing)
+	}
+
+	if src.AccountV2StatusEnumReady != nil {
+		return json.Marshal(&src.AccountV2StatusEnumReady)
+	}
+
+	if src.AccountV2StatusEnumSuspended != nil {
+		return json.Marshal(&src.AccountV2StatusEnumSuspended)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *AccountV2StatusEnum) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.AccountV2StatusEnumDiscovered != nil {
+		return obj.AccountV2StatusEnumDiscovered
+	}
+
+	if obj.AccountV2StatusEnumError != nil {
+		return obj.AccountV2StatusEnumError
+	}
+
+	if obj.AccountV2StatusEnumExpired != nil {
+		return obj.AccountV2StatusEnumExpired
+	}
+
+	if obj.AccountV2StatusEnumProcessing != nil {
+		return obj.AccountV2StatusEnumProcessing
+	}
+
+	if obj.AccountV2StatusEnumReady != nil {
+		return obj.AccountV2StatusEnumReady
+	}
+
+	if obj.AccountV2StatusEnumSuspended != nil {
+		return obj.AccountV2StatusEnumSuspended
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableAccountV2StatusEnum struct {
@@ -116,4 +269,5 @@ func (v *NullableAccountV2StatusEnum) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
 

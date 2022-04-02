@@ -27,7 +27,7 @@ type AccountV2 struct {
 	Iban *string `json:"iban,omitempty"`
 	// The ASPSP associated with this account.
 	InstitutionId *string `json:"institution_id,omitempty"`
-	Status *AccountV2StatusEnum `json:"status,omitempty"`
+	Status NullableAccountV2StatusEnum `json:"status,omitempty"`
 }
 
 // NewAccountV2 instantiates a new AccountV2 object
@@ -217,36 +217,46 @@ func (o *AccountV2) SetInstitutionId(v string) {
 	o.InstitutionId = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccountV2) GetStatus() AccountV2StatusEnum {
-	if o == nil || o.Status == nil {
+	if o == nil || o.Status.Get() == nil {
 		var ret AccountV2StatusEnum
 		return ret
 	}
-	return *o.Status
+	return *o.Status.Get()
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountV2) GetStatusOk() (*AccountV2StatusEnum, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Status, true
+	return o.Status.Get(), o.Status.IsSet()
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AccountV2) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && o.Status.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given AccountV2StatusEnum and assigns it to the Status field.
+// SetStatus gets a reference to the given NullableAccountV2StatusEnum and assigns it to the Status field.
 func (o *AccountV2) SetStatus(v AccountV2StatusEnum) {
-	o.Status = &v
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *AccountV2) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *AccountV2) UnsetStatus() {
+	o.Status.Unset()
 }
 
 func (o AccountV2) MarshalJSON() ([]byte, error) {
@@ -266,8 +276,8 @@ func (o AccountV2) MarshalJSON() ([]byte, error) {
 	if o.InstitutionId != nil {
 		toSerialize["institution_id"] = o.InstitutionId
 	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
 	}
 	return json.Marshal(toSerialize)
 }
