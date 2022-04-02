@@ -4,3 +4,5 @@ gitUserId: joshuaslate
 packageName: nordigen
 packageVersion: 0.0.1
 enumClassPrefix: true
+apiDocs: false
+modelDocs: false
