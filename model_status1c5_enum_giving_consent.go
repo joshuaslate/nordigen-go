@@ -12,119 +12,65 @@ package nordigen
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// Status1c5EnumGivingConsent struct for Status1c5EnumGivingConsent
-type Status1c5EnumGivingConsent struct {
-	Short string `json:"short"`
-	Long string `json:"long"`
-	Description string `json:"description"`
+// Status1c5EnumGivingConsent the model 'Status1c5EnumGivingConsent'
+type Status1c5EnumGivingConsent string
+
+// List of Status1c5EnumGivingConsent
+const (
+	STATUS1C5ENUMGIVINGCONSENT_GC Status1c5EnumGivingConsent = "GC"
+	STATUS1C5ENUMGIVINGCONSENT_GIVING_CONSENT Status1c5EnumGivingConsent = "GIVING_CONSENT"
+)
+
+// All allowed values of Status1c5EnumGivingConsent enum
+var AllowedStatus1c5EnumGivingConsentEnumValues = []Status1c5EnumGivingConsent{
+	"GC",
+	"GIVING_CONSENT",
 }
 
-// NewStatus1c5EnumGivingConsent instantiates a new Status1c5EnumGivingConsent object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewStatus1c5EnumGivingConsent(short string, long string, description string) *Status1c5EnumGivingConsent {
-	this := Status1c5EnumGivingConsent{}
-	this.Short = short
-	this.Long = long
-	this.Description = description
-	return &this
-}
-
-// NewStatus1c5EnumGivingConsentWithDefaults instantiates a new Status1c5EnumGivingConsent object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewStatus1c5EnumGivingConsentWithDefaults() *Status1c5EnumGivingConsent {
-	this := Status1c5EnumGivingConsent{}
-	return &this
-}
-
-// GetShort returns the Short field value
-func (o *Status1c5EnumGivingConsent) GetShort() string {
-	if o == nil {
-		var ret string
-		return ret
+func (v *Status1c5EnumGivingConsent) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := Status1c5EnumGivingConsent(value)
+	for _, existing := range AllowedStatus1c5EnumGivingConsentEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
 	}
 
-	return o.Short
+	return fmt.Errorf("%+v is not a valid Status1c5EnumGivingConsent", value)
 }
 
-// GetShortOk returns a tuple with the Short field value
-// and a boolean to check if the value has been set.
-func (o *Status1c5EnumGivingConsent) GetShortOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
+// NewStatus1c5EnumGivingConsentFromValue returns a pointer to a valid Status1c5EnumGivingConsent
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewStatus1c5EnumGivingConsentFromValue(v string) (*Status1c5EnumGivingConsent, error) {
+	ev := Status1c5EnumGivingConsent(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for Status1c5EnumGivingConsent: valid values are %v", v, AllowedStatus1c5EnumGivingConsentEnumValues)
 	}
-	return &o.Short, true
 }
 
-// SetShort sets field value
-func (o *Status1c5EnumGivingConsent) SetShort(v string) {
-	o.Short = v
-}
-
-// GetLong returns the Long field value
-func (o *Status1c5EnumGivingConsent) GetLong() string {
-	if o == nil {
-		var ret string
-		return ret
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v Status1c5EnumGivingConsent) IsValid() bool {
+	for _, existing := range AllowedStatus1c5EnumGivingConsentEnumValues {
+		if existing == v {
+			return true
+		}
 	}
-
-	return o.Long
+	return false
 }
 
-// GetLongOk returns a tuple with the Long field value
-// and a boolean to check if the value has been set.
-func (o *Status1c5EnumGivingConsent) GetLongOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Long, true
-}
-
-// SetLong sets field value
-func (o *Status1c5EnumGivingConsent) SetLong(v string) {
-	o.Long = v
-}
-
-// GetDescription returns the Description field value
-func (o *Status1c5EnumGivingConsent) GetDescription() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value
-// and a boolean to check if the value has been set.
-func (o *Status1c5EnumGivingConsent) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Description, true
-}
-
-// SetDescription sets field value
-func (o *Status1c5EnumGivingConsent) SetDescription(v string) {
-	o.Description = v
-}
-
-func (o Status1c5EnumGivingConsent) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["short"] = o.Short
-	}
-	if true {
-		toSerialize["long"] = o.Long
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	return json.Marshal(toSerialize)
+// Ptr returns reference to Status1c5EnumGivingConsent value
+func (v Status1c5EnumGivingConsent) Ptr() *Status1c5EnumGivingConsent {
+	return &v
 }
 
 type NullableStatus1c5EnumGivingConsent struct {
@@ -162,5 +108,4 @@ func (v *NullableStatus1c5EnumGivingConsent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

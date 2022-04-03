@@ -12,119 +12,65 @@ package nordigen
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
-// Status1c5EnumUndergoingAuthentication struct for Status1c5EnumUndergoingAuthentication
-type Status1c5EnumUndergoingAuthentication struct {
-	Short string `json:"short"`
-	Long string `json:"long"`
-	Description string `json:"description"`
+// Status1c5EnumUndergoingAuthentication the model 'Status1c5EnumUndergoingAuthentication'
+type Status1c5EnumUndergoingAuthentication string
+
+// List of Status1c5EnumUndergoingAuthentication
+const (
+	STATUS1C5ENUMUNDERGOINGAUTHENTICATION_UA Status1c5EnumUndergoingAuthentication = "UA"
+	STATUS1C5ENUMUNDERGOINGAUTHENTICATION_UNDERGOING_AUTHENTICATION Status1c5EnumUndergoingAuthentication = "UNDERGOING_AUTHENTICATION"
+)
+
+// All allowed values of Status1c5EnumUndergoingAuthentication enum
+var AllowedStatus1c5EnumUndergoingAuthenticationEnumValues = []Status1c5EnumUndergoingAuthentication{
+	"UA",
+	"UNDERGOING_AUTHENTICATION",
 }
 
-// NewStatus1c5EnumUndergoingAuthentication instantiates a new Status1c5EnumUndergoingAuthentication object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewStatus1c5EnumUndergoingAuthentication(short string, long string, description string) *Status1c5EnumUndergoingAuthentication {
-	this := Status1c5EnumUndergoingAuthentication{}
-	this.Short = short
-	this.Long = long
-	this.Description = description
-	return &this
-}
-
-// NewStatus1c5EnumUndergoingAuthenticationWithDefaults instantiates a new Status1c5EnumUndergoingAuthentication object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewStatus1c5EnumUndergoingAuthenticationWithDefaults() *Status1c5EnumUndergoingAuthentication {
-	this := Status1c5EnumUndergoingAuthentication{}
-	return &this
-}
-
-// GetShort returns the Short field value
-func (o *Status1c5EnumUndergoingAuthentication) GetShort() string {
-	if o == nil {
-		var ret string
-		return ret
+func (v *Status1c5EnumUndergoingAuthentication) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	enumTypeValue := Status1c5EnumUndergoingAuthentication(value)
+	for _, existing := range AllowedStatus1c5EnumUndergoingAuthenticationEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
 	}
 
-	return o.Short
+	return fmt.Errorf("%+v is not a valid Status1c5EnumUndergoingAuthentication", value)
 }
 
-// GetShortOk returns a tuple with the Short field value
-// and a boolean to check if the value has been set.
-func (o *Status1c5EnumUndergoingAuthentication) GetShortOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
+// NewStatus1c5EnumUndergoingAuthenticationFromValue returns a pointer to a valid Status1c5EnumUndergoingAuthentication
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewStatus1c5EnumUndergoingAuthenticationFromValue(v string) (*Status1c5EnumUndergoingAuthentication, error) {
+	ev := Status1c5EnumUndergoingAuthentication(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for Status1c5EnumUndergoingAuthentication: valid values are %v", v, AllowedStatus1c5EnumUndergoingAuthenticationEnumValues)
 	}
-	return &o.Short, true
 }
 
-// SetShort sets field value
-func (o *Status1c5EnumUndergoingAuthentication) SetShort(v string) {
-	o.Short = v
-}
-
-// GetLong returns the Long field value
-func (o *Status1c5EnumUndergoingAuthentication) GetLong() string {
-	if o == nil {
-		var ret string
-		return ret
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v Status1c5EnumUndergoingAuthentication) IsValid() bool {
+	for _, existing := range AllowedStatus1c5EnumUndergoingAuthenticationEnumValues {
+		if existing == v {
+			return true
+		}
 	}
-
-	return o.Long
+	return false
 }
 
-// GetLongOk returns a tuple with the Long field value
-// and a boolean to check if the value has been set.
-func (o *Status1c5EnumUndergoingAuthentication) GetLongOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Long, true
-}
-
-// SetLong sets field value
-func (o *Status1c5EnumUndergoingAuthentication) SetLong(v string) {
-	o.Long = v
-}
-
-// GetDescription returns the Description field value
-func (o *Status1c5EnumUndergoingAuthentication) GetDescription() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value
-// and a boolean to check if the value has been set.
-func (o *Status1c5EnumUndergoingAuthentication) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Description, true
-}
-
-// SetDescription sets field value
-func (o *Status1c5EnumUndergoingAuthentication) SetDescription(v string) {
-	o.Description = v
-}
-
-func (o Status1c5EnumUndergoingAuthentication) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["short"] = o.Short
-	}
-	if true {
-		toSerialize["long"] = o.Long
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	return json.Marshal(toSerialize)
+// Ptr returns reference to Status1c5EnumUndergoingAuthentication value
+func (v Status1c5EnumUndergoingAuthentication) Ptr() *Status1c5EnumUndergoingAuthentication {
+	return &v
 }
 
 type NullableStatus1c5EnumUndergoingAuthentication struct {
@@ -162,5 +108,4 @@ func (v *NullableStatus1c5EnumUndergoingAuthentication) UnmarshalJSON(src []byte
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

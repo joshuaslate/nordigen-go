@@ -23,12 +23,6 @@ model_account_transaction_response_transactions.go
 model_account_transaction_transaction_amount.go
 model_account_v2.go
 model_account_v2_status_enum.go
-model_account_v2_status_enum_discovered.go
-model_account_v2_status_enum_error.go
-model_account_v2_status_enum_expired.go
-model_account_v2_status_enum_processing.go
-model_account_v2_status_enum_ready.go
-model_account_v2_status_enum_suspended.go
 model_aspsp.go
 model_country_enum.go
 model_end_user_agreement.go
