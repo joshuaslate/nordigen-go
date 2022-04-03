@@ -24,6 +24,7 @@ model_account_transaction_transaction_amount.go
 model_account_v2.go
 model_account_v2_status_enum.go
 model_aspsp.go
+model_cash_account_type.go
 model_country_enum.go
 model_end_user_agreement.go
 model_end_user_agreement_request.go

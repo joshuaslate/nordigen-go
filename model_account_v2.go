@@ -25,6 +25,8 @@ type AccountV2 struct {
 	LastAccessed NullableTime `json:"last_accessed,omitempty"`
 	// The Account IBAN
 	Iban *string `json:"iban,omitempty"`
+	// This data element is used for payment accounts which have no IBAN
+	Bban *string `json:"bban,omitempty"`
 	// The ASPSP associated with this account.
 	InstitutionId *string `json:"institution_id,omitempty"`
 	Status NullableAccountV2StatusEnum `json:"status,omitempty"`
@@ -185,6 +187,38 @@ func (o *AccountV2) SetIban(v string) {
 	o.Iban = &v
 }
 
+// GetBban returns the Bban field value if set, zero value otherwise.
+func (o *AccountV2) GetBban() string {
+	if o == nil || o.Bban == nil {
+		var ret string
+		return ret
+	}
+	return *o.Bban
+}
+
+// GetBbanOk returns a tuple with the Bban field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountV2) GetBbanOk() (*string, bool) {
+	if o == nil || o.Bban == nil {
+		return nil, false
+	}
+	return o.Bban, true
+}
+
+// HasBban returns a boolean if a field has been set.
+func (o *AccountV2) HasBban() bool {
+	if o != nil && o.Bban != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBban gets a reference to the given string and assigns it to the Bban field.
+func (o *AccountV2) SetBban(v string) {
+	o.Bban = &v
+}
+
 // GetInstitutionId returns the InstitutionId field value if set, zero value otherwise.
 func (o *AccountV2) GetInstitutionId() string {
 	if o == nil || o.InstitutionId == nil {
@@ -272,6 +306,9 @@ func (o AccountV2) MarshalJSON() ([]byte, error) {
 	}
 	if o.Iban != nil {
 		toSerialize["iban"] = o.Iban
+	}
+	if o.Bban != nil {
+		toSerialize["bban"] = o.Bban
 	}
 	if o.InstitutionId != nil {
 		toSerialize["institution_id"] = o.InstitutionId

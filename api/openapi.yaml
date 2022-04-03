@@ -3183,6 +3183,11 @@ components:
           description: The Account IBAN
           readOnly: true
           type: string
+        bban:
+          description: This data element is used for payment accounts which have no
+            IBAN
+          readOnly: true
+          type: string
         institution_id:
           description: The ASPSP associated with this account.
           readOnly: true
@@ -3207,7 +3212,39 @@ components:
         referenceDate:
           format: YYYY-MM-DD
           type: string
+        creditLimitIncluded:
+          description: A flag indicating if the credit limit of the corresponding
+            account is included in the calculation of the balance, where applicable.
+          nullable: true
+          type: boolean
       type: object
+    CashAccountType:
+      description: ExternalCashAccountType1Code from ISO 20022
+      enum:
+      - CACC
+      - CARD
+      - CASH
+      - CHAR
+      - CISH
+      - COMM
+      - CPAC
+      - LLSV
+      - LOAN
+      - MGLD
+      - MOMA
+      - NREX
+      - ODFT
+      - ONDP
+      - OTHR
+      - SACC
+      - SLRY
+      - SVGS
+      - TAXE
+      - TRAN
+      - SABS
+      - TRAS
+      nullable: true
+      type: string
     AccountDetail:
       example:
         cashAccountType: cashAccountType
@@ -3221,17 +3258,67 @@ components:
         resourceId:
           type: string
         iban:
+          nullable: true
+          type: string
+        bban:
+          description: This data element is used for payment accounts which have no
+            IBAN
+          nullable: true
+          type: string
+        bic:
+          description: The BIC associated to the account.
+          nullable: true
+          type: string
+        details:
+          description: Specifications that might be provided by the financial institution
+          nullable: true
           type: string
         currency:
           type: string
         ownerName:
+          nullable: true
+          type: string
+        ownerAddressUnstructured:
+          description: Address of the legal account owner
+          nullable: true
           type: string
         name:
+          description: Name of the account, as assigned by the financial institution
+          nullable: true
+          type: string
+        displayName:
+          description: Name of the account as defined by the end user within online
+            channels
+          nullable: true
+          type: string
+        linkedAccounts:
+          description: This data attribute is a field, where an financial institution
+            can name a cash account associated to pending card transactions.
+          nullable: true
+          type: string
+        msisdn:
+          description: An alias to a payment account via a registered mobile phone
+            number
+          nullable: true
           type: string
         product:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - enabled
+          - deleted
+          - blocked
+          nullable: true
+          type: string
+        usage:
+          enum:
+          - PRIV
+          - ORGA
+          nullable: true
           type: string
         cashAccountType:
-          type: string
+          $ref: '#/components/schemas/CashAccountType'
       type: object
     AccountDetailResponse:
       example:

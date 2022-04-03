@@ -17,12 +17,29 @@ import (
 // AccountDetail struct for AccountDetail
 type AccountDetail struct {
 	ResourceId *string `json:"resourceId,omitempty"`
-	Iban *string `json:"iban,omitempty"`
+	Iban NullableString `json:"iban,omitempty"`
+	// This data element is used for payment accounts which have no IBAN
+	Bban NullableString `json:"bban,omitempty"`
+	// The BIC associated to the account.
+	Bic NullableString `json:"bic,omitempty"`
+	// Specifications that might be provided by the financial institution
+	Details NullableString `json:"details,omitempty"`
 	Currency *string `json:"currency,omitempty"`
-	OwnerName *string `json:"ownerName,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Product *string `json:"product,omitempty"`
-	CashAccountType *string `json:"cashAccountType,omitempty"`
+	OwnerName NullableString `json:"ownerName,omitempty"`
+	// Address of the legal account owner
+	OwnerAddressUnstructured NullableString `json:"ownerAddressUnstructured,omitempty"`
+	// Name of the account, as assigned by the financial institution
+	Name NullableString `json:"name,omitempty"`
+	// Name of the account as defined by the end user within online channels
+	DisplayName NullableString `json:"displayName,omitempty"`
+	// This data attribute is a field, where an financial institution can name a cash account associated to pending card transactions.
+	LinkedAccounts NullableString `json:"linkedAccounts,omitempty"`
+	// An alias to a payment account via a registered mobile phone number
+	Msisdn NullableString `json:"msisdn,omitempty"`
+	Product NullableString `json:"product,omitempty"`
+	Status NullableString `json:"status,omitempty"`
+	Usage NullableString `json:"usage,omitempty"`
+	CashAccountType NullableCashAccountType `json:"cashAccountType,omitempty"`
 }
 
 // NewAccountDetail instantiates a new AccountDetail object
@@ -74,36 +91,172 @@ func (o *AccountDetail) SetResourceId(v string) {
 	o.ResourceId = &v
 }
 
-// GetIban returns the Iban field value if set, zero value otherwise.
+// GetIban returns the Iban field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccountDetail) GetIban() string {
-	if o == nil || o.Iban == nil {
+	if o == nil || o.Iban.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Iban
+	return *o.Iban.Get()
 }
 
 // GetIbanOk returns a tuple with the Iban field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountDetail) GetIbanOk() (*string, bool) {
-	if o == nil || o.Iban == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Iban, true
+	return o.Iban.Get(), o.Iban.IsSet()
 }
 
 // HasIban returns a boolean if a field has been set.
 func (o *AccountDetail) HasIban() bool {
-	if o != nil && o.Iban != nil {
+	if o != nil && o.Iban.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIban gets a reference to the given string and assigns it to the Iban field.
+// SetIban gets a reference to the given NullableString and assigns it to the Iban field.
 func (o *AccountDetail) SetIban(v string) {
-	o.Iban = &v
+	o.Iban.Set(&v)
+}
+// SetIbanNil sets the value for Iban to be an explicit nil
+func (o *AccountDetail) SetIbanNil() {
+	o.Iban.Set(nil)
+}
+
+// UnsetIban ensures that no value is present for Iban, not even an explicit nil
+func (o *AccountDetail) UnsetIban() {
+	o.Iban.Unset()
+}
+
+// GetBban returns the Bban field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetBban() string {
+	if o == nil || o.Bban.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Bban.Get()
+}
+
+// GetBbanOk returns a tuple with the Bban field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetBbanOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Bban.Get(), o.Bban.IsSet()
+}
+
+// HasBban returns a boolean if a field has been set.
+func (o *AccountDetail) HasBban() bool {
+	if o != nil && o.Bban.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBban gets a reference to the given NullableString and assigns it to the Bban field.
+func (o *AccountDetail) SetBban(v string) {
+	o.Bban.Set(&v)
+}
+// SetBbanNil sets the value for Bban to be an explicit nil
+func (o *AccountDetail) SetBbanNil() {
+	o.Bban.Set(nil)
+}
+
+// UnsetBban ensures that no value is present for Bban, not even an explicit nil
+func (o *AccountDetail) UnsetBban() {
+	o.Bban.Unset()
+}
+
+// GetBic returns the Bic field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetBic() string {
+	if o == nil || o.Bic.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Bic.Get()
+}
+
+// GetBicOk returns a tuple with the Bic field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetBicOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Bic.Get(), o.Bic.IsSet()
+}
+
+// HasBic returns a boolean if a field has been set.
+func (o *AccountDetail) HasBic() bool {
+	if o != nil && o.Bic.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBic gets a reference to the given NullableString and assigns it to the Bic field.
+func (o *AccountDetail) SetBic(v string) {
+	o.Bic.Set(&v)
+}
+// SetBicNil sets the value for Bic to be an explicit nil
+func (o *AccountDetail) SetBicNil() {
+	o.Bic.Set(nil)
+}
+
+// UnsetBic ensures that no value is present for Bic, not even an explicit nil
+func (o *AccountDetail) UnsetBic() {
+	o.Bic.Unset()
+}
+
+// GetDetails returns the Details field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetDetails() string {
+	if o == nil || o.Details.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Details.Get()
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetDetailsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Details.Get(), o.Details.IsSet()
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *AccountDetail) HasDetails() bool {
+	if o != nil && o.Details.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDetails gets a reference to the given NullableString and assigns it to the Details field.
+func (o *AccountDetail) SetDetails(v string) {
+	o.Details.Set(&v)
+}
+// SetDetailsNil sets the value for Details to be an explicit nil
+func (o *AccountDetail) SetDetailsNil() {
+	o.Details.Set(nil)
+}
+
+// UnsetDetails ensures that no value is present for Details, not even an explicit nil
+func (o *AccountDetail) UnsetDetails() {
+	o.Details.Unset()
 }
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
@@ -138,132 +291,424 @@ func (o *AccountDetail) SetCurrency(v string) {
 	o.Currency = &v
 }
 
-// GetOwnerName returns the OwnerName field value if set, zero value otherwise.
+// GetOwnerName returns the OwnerName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccountDetail) GetOwnerName() string {
-	if o == nil || o.OwnerName == nil {
+	if o == nil || o.OwnerName.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.OwnerName
+	return *o.OwnerName.Get()
 }
 
 // GetOwnerNameOk returns a tuple with the OwnerName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountDetail) GetOwnerNameOk() (*string, bool) {
-	if o == nil || o.OwnerName == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OwnerName, true
+	return o.OwnerName.Get(), o.OwnerName.IsSet()
 }
 
 // HasOwnerName returns a boolean if a field has been set.
 func (o *AccountDetail) HasOwnerName() bool {
-	if o != nil && o.OwnerName != nil {
+	if o != nil && o.OwnerName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOwnerName gets a reference to the given string and assigns it to the OwnerName field.
+// SetOwnerName gets a reference to the given NullableString and assigns it to the OwnerName field.
 func (o *AccountDetail) SetOwnerName(v string) {
-	o.OwnerName = &v
+	o.OwnerName.Set(&v)
+}
+// SetOwnerNameNil sets the value for OwnerName to be an explicit nil
+func (o *AccountDetail) SetOwnerNameNil() {
+	o.OwnerName.Set(nil)
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *AccountDetail) GetName() string {
-	if o == nil || o.Name == nil {
+// UnsetOwnerName ensures that no value is present for OwnerName, not even an explicit nil
+func (o *AccountDetail) UnsetOwnerName() {
+	o.OwnerName.Unset()
+}
+
+// GetOwnerAddressUnstructured returns the OwnerAddressUnstructured field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetOwnerAddressUnstructured() string {
+	if o == nil || o.OwnerAddressUnstructured.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.OwnerAddressUnstructured.Get()
+}
+
+// GetOwnerAddressUnstructuredOk returns a tuple with the OwnerAddressUnstructured field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetOwnerAddressUnstructuredOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.OwnerAddressUnstructured.Get(), o.OwnerAddressUnstructured.IsSet()
+}
+
+// HasOwnerAddressUnstructured returns a boolean if a field has been set.
+func (o *AccountDetail) HasOwnerAddressUnstructured() bool {
+	if o != nil && o.OwnerAddressUnstructured.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerAddressUnstructured gets a reference to the given NullableString and assigns it to the OwnerAddressUnstructured field.
+func (o *AccountDetail) SetOwnerAddressUnstructured(v string) {
+	o.OwnerAddressUnstructured.Set(&v)
+}
+// SetOwnerAddressUnstructuredNil sets the value for OwnerAddressUnstructured to be an explicit nil
+func (o *AccountDetail) SetOwnerAddressUnstructuredNil() {
+	o.OwnerAddressUnstructured.Set(nil)
+}
+
+// UnsetOwnerAddressUnstructured ensures that no value is present for OwnerAddressUnstructured, not even an explicit nil
+func (o *AccountDetail) UnsetOwnerAddressUnstructured() {
+	o.OwnerAddressUnstructured.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetName() string {
+	if o == nil || o.Name.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountDetail) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *AccountDetail) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *AccountDetail) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *AccountDetail) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetProduct returns the Product field value if set, zero value otherwise.
-func (o *AccountDetail) GetProduct() string {
-	if o == nil || o.Product == nil {
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *AccountDetail) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetDisplayName() string {
+	if o == nil || o.DisplayName.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Product
+	return *o.DisplayName.Get()
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetDisplayNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.DisplayName.Get(), o.DisplayName.IsSet()
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *AccountDetail) HasDisplayName() bool {
+	if o != nil && o.DisplayName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given NullableString and assigns it to the DisplayName field.
+func (o *AccountDetail) SetDisplayName(v string) {
+	o.DisplayName.Set(&v)
+}
+// SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+func (o *AccountDetail) SetDisplayNameNil() {
+	o.DisplayName.Set(nil)
+}
+
+// UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+func (o *AccountDetail) UnsetDisplayName() {
+	o.DisplayName.Unset()
+}
+
+// GetLinkedAccounts returns the LinkedAccounts field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetLinkedAccounts() string {
+	if o == nil || o.LinkedAccounts.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LinkedAccounts.Get()
+}
+
+// GetLinkedAccountsOk returns a tuple with the LinkedAccounts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetLinkedAccountsOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.LinkedAccounts.Get(), o.LinkedAccounts.IsSet()
+}
+
+// HasLinkedAccounts returns a boolean if a field has been set.
+func (o *AccountDetail) HasLinkedAccounts() bool {
+	if o != nil && o.LinkedAccounts.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedAccounts gets a reference to the given NullableString and assigns it to the LinkedAccounts field.
+func (o *AccountDetail) SetLinkedAccounts(v string) {
+	o.LinkedAccounts.Set(&v)
+}
+// SetLinkedAccountsNil sets the value for LinkedAccounts to be an explicit nil
+func (o *AccountDetail) SetLinkedAccountsNil() {
+	o.LinkedAccounts.Set(nil)
+}
+
+// UnsetLinkedAccounts ensures that no value is present for LinkedAccounts, not even an explicit nil
+func (o *AccountDetail) UnsetLinkedAccounts() {
+	o.LinkedAccounts.Unset()
+}
+
+// GetMsisdn returns the Msisdn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetMsisdn() string {
+	if o == nil || o.Msisdn.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Msisdn.Get()
+}
+
+// GetMsisdnOk returns a tuple with the Msisdn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetMsisdnOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Msisdn.Get(), o.Msisdn.IsSet()
+}
+
+// HasMsisdn returns a boolean if a field has been set.
+func (o *AccountDetail) HasMsisdn() bool {
+	if o != nil && o.Msisdn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMsisdn gets a reference to the given NullableString and assigns it to the Msisdn field.
+func (o *AccountDetail) SetMsisdn(v string) {
+	o.Msisdn.Set(&v)
+}
+// SetMsisdnNil sets the value for Msisdn to be an explicit nil
+func (o *AccountDetail) SetMsisdnNil() {
+	o.Msisdn.Set(nil)
+}
+
+// UnsetMsisdn ensures that no value is present for Msisdn, not even an explicit nil
+func (o *AccountDetail) UnsetMsisdn() {
+	o.Msisdn.Unset()
+}
+
+// GetProduct returns the Product field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetProduct() string {
+	if o == nil || o.Product.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Product.Get()
 }
 
 // GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AccountDetail) GetProductOk() (*string, bool) {
-	if o == nil || o.Product == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Product, true
+	return o.Product.Get(), o.Product.IsSet()
 }
 
 // HasProduct returns a boolean if a field has been set.
 func (o *AccountDetail) HasProduct() bool {
-	if o != nil && o.Product != nil {
+	if o != nil && o.Product.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetProduct gets a reference to the given string and assigns it to the Product field.
+// SetProduct gets a reference to the given NullableString and assigns it to the Product field.
 func (o *AccountDetail) SetProduct(v string) {
-	o.Product = &v
+	o.Product.Set(&v)
+}
+// SetProductNil sets the value for Product to be an explicit nil
+func (o *AccountDetail) SetProductNil() {
+	o.Product.Set(nil)
 }
 
-// GetCashAccountType returns the CashAccountType field value if set, zero value otherwise.
-func (o *AccountDetail) GetCashAccountType() string {
-	if o == nil || o.CashAccountType == nil {
+// UnsetProduct ensures that no value is present for Product, not even an explicit nil
+func (o *AccountDetail) UnsetProduct() {
+	o.Product.Unset()
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetStatus() string {
+	if o == nil || o.Status.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.CashAccountType
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *AccountDetail) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
+func (o *AccountDetail) SetStatus(v string) {
+	o.Status.Set(&v)
+}
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *AccountDetail) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *AccountDetail) UnsetStatus() {
+	o.Status.Unset()
+}
+
+// GetUsage returns the Usage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetUsage() string {
+	if o == nil || o.Usage.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Usage.Get()
+}
+
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetUsageOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Usage.Get(), o.Usage.IsSet()
+}
+
+// HasUsage returns a boolean if a field has been set.
+func (o *AccountDetail) HasUsage() bool {
+	if o != nil && o.Usage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsage gets a reference to the given NullableString and assigns it to the Usage field.
+func (o *AccountDetail) SetUsage(v string) {
+	o.Usage.Set(&v)
+}
+// SetUsageNil sets the value for Usage to be an explicit nil
+func (o *AccountDetail) SetUsageNil() {
+	o.Usage.Set(nil)
+}
+
+// UnsetUsage ensures that no value is present for Usage, not even an explicit nil
+func (o *AccountDetail) UnsetUsage() {
+	o.Usage.Unset()
+}
+
+// GetCashAccountType returns the CashAccountType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountDetail) GetCashAccountType() CashAccountType {
+	if o == nil || o.CashAccountType.Get() == nil {
+		var ret CashAccountType
+		return ret
+	}
+	return *o.CashAccountType.Get()
 }
 
 // GetCashAccountTypeOk returns a tuple with the CashAccountType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountDetail) GetCashAccountTypeOk() (*string, bool) {
-	if o == nil || o.CashAccountType == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountDetail) GetCashAccountTypeOk() (*CashAccountType, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CashAccountType, true
+	return o.CashAccountType.Get(), o.CashAccountType.IsSet()
 }
 
 // HasCashAccountType returns a boolean if a field has been set.
 func (o *AccountDetail) HasCashAccountType() bool {
-	if o != nil && o.CashAccountType != nil {
+	if o != nil && o.CashAccountType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCashAccountType gets a reference to the given string and assigns it to the CashAccountType field.
-func (o *AccountDetail) SetCashAccountType(v string) {
-	o.CashAccountType = &v
+// SetCashAccountType gets a reference to the given NullableCashAccountType and assigns it to the CashAccountType field.
+func (o *AccountDetail) SetCashAccountType(v CashAccountType) {
+	o.CashAccountType.Set(&v)
+}
+// SetCashAccountTypeNil sets the value for CashAccountType to be an explicit nil
+func (o *AccountDetail) SetCashAccountTypeNil() {
+	o.CashAccountType.Set(nil)
+}
+
+// UnsetCashAccountType ensures that no value is present for CashAccountType, not even an explicit nil
+func (o *AccountDetail) UnsetCashAccountType() {
+	o.CashAccountType.Unset()
 }
 
 func (o AccountDetail) MarshalJSON() ([]byte, error) {
@@ -271,23 +716,50 @@ func (o AccountDetail) MarshalJSON() ([]byte, error) {
 	if o.ResourceId != nil {
 		toSerialize["resourceId"] = o.ResourceId
 	}
-	if o.Iban != nil {
-		toSerialize["iban"] = o.Iban
+	if o.Iban.IsSet() {
+		toSerialize["iban"] = o.Iban.Get()
+	}
+	if o.Bban.IsSet() {
+		toSerialize["bban"] = o.Bban.Get()
+	}
+	if o.Bic.IsSet() {
+		toSerialize["bic"] = o.Bic.Get()
+	}
+	if o.Details.IsSet() {
+		toSerialize["details"] = o.Details.Get()
 	}
 	if o.Currency != nil {
 		toSerialize["currency"] = o.Currency
 	}
-	if o.OwnerName != nil {
-		toSerialize["ownerName"] = o.OwnerName
+	if o.OwnerName.IsSet() {
+		toSerialize["ownerName"] = o.OwnerName.Get()
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.OwnerAddressUnstructured.IsSet() {
+		toSerialize["ownerAddressUnstructured"] = o.OwnerAddressUnstructured.Get()
 	}
-	if o.Product != nil {
-		toSerialize["product"] = o.Product
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
-	if o.CashAccountType != nil {
-		toSerialize["cashAccountType"] = o.CashAccountType
+	if o.DisplayName.IsSet() {
+		toSerialize["displayName"] = o.DisplayName.Get()
+	}
+	if o.LinkedAccounts.IsSet() {
+		toSerialize["linkedAccounts"] = o.LinkedAccounts.Get()
+	}
+	if o.Msisdn.IsSet() {
+		toSerialize["msisdn"] = o.Msisdn.Get()
+	}
+	if o.Product.IsSet() {
+		toSerialize["product"] = o.Product.Get()
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
+	if o.Usage.IsSet() {
+		toSerialize["usage"] = o.Usage.Get()
+	}
+	if o.CashAccountType.IsSet() {
+		toSerialize["cashAccountType"] = o.CashAccountType.Get()
 	}
 	return json.Marshal(toSerialize)
 }

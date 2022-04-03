@@ -2,7 +2,7 @@
 gitRepoId: nordigen-go
 gitUserId: joshuaslate
 packageName: nordigen
-packageVersion: 0.0.2
+packageVersion: 0.0.3
 enumClassPrefix: true
 apiDocs: false
 modelDocs: false

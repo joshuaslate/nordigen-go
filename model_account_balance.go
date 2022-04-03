@@ -19,6 +19,8 @@ type AccountBalance struct {
 	BalanceAmount *AccountBalanceBalanceAmount `json:"balanceAmount,omitempty"`
 	BalanceType *string `json:"balanceType,omitempty"`
 	ReferenceDate *string `json:"referenceDate,omitempty"`
+	// A flag indicating if the credit limit of the corresponding account is included in the calculation of the balance, where applicable.
+	CreditLimitIncluded NullableBool `json:"creditLimitIncluded,omitempty"`
 }
 
 // NewAccountBalance instantiates a new AccountBalance object
@@ -134,6 +136,48 @@ func (o *AccountBalance) SetReferenceDate(v string) {
 	o.ReferenceDate = &v
 }
 
+// GetCreditLimitIncluded returns the CreditLimitIncluded field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AccountBalance) GetCreditLimitIncluded() bool {
+	if o == nil || o.CreditLimitIncluded.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CreditLimitIncluded.Get()
+}
+
+// GetCreditLimitIncludedOk returns a tuple with the CreditLimitIncluded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AccountBalance) GetCreditLimitIncludedOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.CreditLimitIncluded.Get(), o.CreditLimitIncluded.IsSet()
+}
+
+// HasCreditLimitIncluded returns a boolean if a field has been set.
+func (o *AccountBalance) HasCreditLimitIncluded() bool {
+	if o != nil && o.CreditLimitIncluded.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditLimitIncluded gets a reference to the given NullableBool and assigns it to the CreditLimitIncluded field.
+func (o *AccountBalance) SetCreditLimitIncluded(v bool) {
+	o.CreditLimitIncluded.Set(&v)
+}
+// SetCreditLimitIncludedNil sets the value for CreditLimitIncluded to be an explicit nil
+func (o *AccountBalance) SetCreditLimitIncludedNil() {
+	o.CreditLimitIncluded.Set(nil)
+}
+
+// UnsetCreditLimitIncluded ensures that no value is present for CreditLimitIncluded, not even an explicit nil
+func (o *AccountBalance) UnsetCreditLimitIncluded() {
+	o.CreditLimitIncluded.Unset()
+}
+
 func (o AccountBalance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.BalanceAmount != nil {
@@ -144,6 +188,9 @@ func (o AccountBalance) MarshalJSON() ([]byte, error) {
 	}
 	if o.ReferenceDate != nil {
 		toSerialize["referenceDate"] = o.ReferenceDate
+	}
+	if o.CreditLimitIncluded.IsSet() {
+		toSerialize["creditLimitIncluded"] = o.CreditLimitIncluded.Get()
 	}
 	return json.Marshal(toSerialize)
 }
