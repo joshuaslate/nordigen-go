@@ -18,13 +18,24 @@ import (
 // AccountTransaction struct for AccountTransaction
 type AccountTransaction struct {
 	TransactionId *string `json:"transactionId,omitempty"`
+	EntryReference *string `json:"entryReference,omitempty"`
+	CheckId *string `json:"checkId,omitempty"`
+	CreditorId *string `json:"creditorId,omitempty"`
+	CreditorName *string `json:"creditorName,omitempty"`
+	CreditorAccount *AccountTransactionCreditorAccount `json:"creditorAccount,omitempty"`
 	DebtorName *string `json:"debtorName,omitempty"`
 	DebtorAccount *AccountTransactionDebtorAccount `json:"debtorAccount,omitempty"`
 	TransactionAmount *AccountTransactionTransactionAmount `json:"transactionAmount,omitempty"`
 	BankTransactionCode *string `json:"bankTransactionCode,omitempty"`
 	BookingDate *time.Time `json:"bookingDate,omitempty"`
 	ValueDate *time.Time `json:"valueDate,omitempty"`
+	MandateId *string `json:"mandateId,omitempty"`
+	PurposeCode *string `json:"purposeCode,omitempty"`
 	RemittanceInformationUnstructured *string `json:"remittanceInformationUnstructured,omitempty"`
+	AdditionalInformation *string `json:"additionalInformation,omitempty"`
+	ProprietaryBankTransactionCode *string `json:"proprietaryBankTransactionCode,omitempty"`
+	UltimateCreditor *string `json:"ultimateCreditor,omitempty"`
+	UltimateDebtor *string `json:"ultimateDebtor,omitempty"`
 }
 
 // NewAccountTransaction instantiates a new AccountTransaction object
@@ -74,6 +85,166 @@ func (o *AccountTransaction) HasTransactionId() bool {
 // SetTransactionId gets a reference to the given string and assigns it to the TransactionId field.
 func (o *AccountTransaction) SetTransactionId(v string) {
 	o.TransactionId = &v
+}
+
+// GetEntryReference returns the EntryReference field value if set, zero value otherwise.
+func (o *AccountTransaction) GetEntryReference() string {
+	if o == nil || o.EntryReference == nil {
+		var ret string
+		return ret
+	}
+	return *o.EntryReference
+}
+
+// GetEntryReferenceOk returns a tuple with the EntryReference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetEntryReferenceOk() (*string, bool) {
+	if o == nil || o.EntryReference == nil {
+		return nil, false
+	}
+	return o.EntryReference, true
+}
+
+// HasEntryReference returns a boolean if a field has been set.
+func (o *AccountTransaction) HasEntryReference() bool {
+	if o != nil && o.EntryReference != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEntryReference gets a reference to the given string and assigns it to the EntryReference field.
+func (o *AccountTransaction) SetEntryReference(v string) {
+	o.EntryReference = &v
+}
+
+// GetCheckId returns the CheckId field value if set, zero value otherwise.
+func (o *AccountTransaction) GetCheckId() string {
+	if o == nil || o.CheckId == nil {
+		var ret string
+		return ret
+	}
+	return *o.CheckId
+}
+
+// GetCheckIdOk returns a tuple with the CheckId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetCheckIdOk() (*string, bool) {
+	if o == nil || o.CheckId == nil {
+		return nil, false
+	}
+	return o.CheckId, true
+}
+
+// HasCheckId returns a boolean if a field has been set.
+func (o *AccountTransaction) HasCheckId() bool {
+	if o != nil && o.CheckId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckId gets a reference to the given string and assigns it to the CheckId field.
+func (o *AccountTransaction) SetCheckId(v string) {
+	o.CheckId = &v
+}
+
+// GetCreditorId returns the CreditorId field value if set, zero value otherwise.
+func (o *AccountTransaction) GetCreditorId() string {
+	if o == nil || o.CreditorId == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreditorId
+}
+
+// GetCreditorIdOk returns a tuple with the CreditorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetCreditorIdOk() (*string, bool) {
+	if o == nil || o.CreditorId == nil {
+		return nil, false
+	}
+	return o.CreditorId, true
+}
+
+// HasCreditorId returns a boolean if a field has been set.
+func (o *AccountTransaction) HasCreditorId() bool {
+	if o != nil && o.CreditorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditorId gets a reference to the given string and assigns it to the CreditorId field.
+func (o *AccountTransaction) SetCreditorId(v string) {
+	o.CreditorId = &v
+}
+
+// GetCreditorName returns the CreditorName field value if set, zero value otherwise.
+func (o *AccountTransaction) GetCreditorName() string {
+	if o == nil || o.CreditorName == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreditorName
+}
+
+// GetCreditorNameOk returns a tuple with the CreditorName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetCreditorNameOk() (*string, bool) {
+	if o == nil || o.CreditorName == nil {
+		return nil, false
+	}
+	return o.CreditorName, true
+}
+
+// HasCreditorName returns a boolean if a field has been set.
+func (o *AccountTransaction) HasCreditorName() bool {
+	if o != nil && o.CreditorName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditorName gets a reference to the given string and assigns it to the CreditorName field.
+func (o *AccountTransaction) SetCreditorName(v string) {
+	o.CreditorName = &v
+}
+
+// GetCreditorAccount returns the CreditorAccount field value if set, zero value otherwise.
+func (o *AccountTransaction) GetCreditorAccount() AccountTransactionCreditorAccount {
+	if o == nil || o.CreditorAccount == nil {
+		var ret AccountTransactionCreditorAccount
+		return ret
+	}
+	return *o.CreditorAccount
+}
+
+// GetCreditorAccountOk returns a tuple with the CreditorAccount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetCreditorAccountOk() (*AccountTransactionCreditorAccount, bool) {
+	if o == nil || o.CreditorAccount == nil {
+		return nil, false
+	}
+	return o.CreditorAccount, true
+}
+
+// HasCreditorAccount returns a boolean if a field has been set.
+func (o *AccountTransaction) HasCreditorAccount() bool {
+	if o != nil && o.CreditorAccount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditorAccount gets a reference to the given AccountTransactionCreditorAccount and assigns it to the CreditorAccount field.
+func (o *AccountTransaction) SetCreditorAccount(v AccountTransactionCreditorAccount) {
+	o.CreditorAccount = &v
 }
 
 // GetDebtorName returns the DebtorName field value if set, zero value otherwise.
@@ -268,6 +439,70 @@ func (o *AccountTransaction) SetValueDate(v time.Time) {
 	o.ValueDate = &v
 }
 
+// GetMandateId returns the MandateId field value if set, zero value otherwise.
+func (o *AccountTransaction) GetMandateId() string {
+	if o == nil || o.MandateId == nil {
+		var ret string
+		return ret
+	}
+	return *o.MandateId
+}
+
+// GetMandateIdOk returns a tuple with the MandateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetMandateIdOk() (*string, bool) {
+	if o == nil || o.MandateId == nil {
+		return nil, false
+	}
+	return o.MandateId, true
+}
+
+// HasMandateId returns a boolean if a field has been set.
+func (o *AccountTransaction) HasMandateId() bool {
+	if o != nil && o.MandateId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMandateId gets a reference to the given string and assigns it to the MandateId field.
+func (o *AccountTransaction) SetMandateId(v string) {
+	o.MandateId = &v
+}
+
+// GetPurposeCode returns the PurposeCode field value if set, zero value otherwise.
+func (o *AccountTransaction) GetPurposeCode() string {
+	if o == nil || o.PurposeCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.PurposeCode
+}
+
+// GetPurposeCodeOk returns a tuple with the PurposeCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetPurposeCodeOk() (*string, bool) {
+	if o == nil || o.PurposeCode == nil {
+		return nil, false
+	}
+	return o.PurposeCode, true
+}
+
+// HasPurposeCode returns a boolean if a field has been set.
+func (o *AccountTransaction) HasPurposeCode() bool {
+	if o != nil && o.PurposeCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPurposeCode gets a reference to the given string and assigns it to the PurposeCode field.
+func (o *AccountTransaction) SetPurposeCode(v string) {
+	o.PurposeCode = &v
+}
+
 // GetRemittanceInformationUnstructured returns the RemittanceInformationUnstructured field value if set, zero value otherwise.
 func (o *AccountTransaction) GetRemittanceInformationUnstructured() string {
 	if o == nil || o.RemittanceInformationUnstructured == nil {
@@ -300,10 +535,153 @@ func (o *AccountTransaction) SetRemittanceInformationUnstructured(v string) {
 	o.RemittanceInformationUnstructured = &v
 }
 
+// GetAdditionalInformation returns the AdditionalInformation field value if set, zero value otherwise.
+func (o *AccountTransaction) GetAdditionalInformation() string {
+	if o == nil || o.AdditionalInformation == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdditionalInformation
+}
+
+// GetAdditionalInformationOk returns a tuple with the AdditionalInformation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetAdditionalInformationOk() (*string, bool) {
+	if o == nil || o.AdditionalInformation == nil {
+		return nil, false
+	}
+	return o.AdditionalInformation, true
+}
+
+// HasAdditionalInformation returns a boolean if a field has been set.
+func (o *AccountTransaction) HasAdditionalInformation() bool {
+	if o != nil && o.AdditionalInformation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalInformation gets a reference to the given string and assigns it to the AdditionalInformation field.
+func (o *AccountTransaction) SetAdditionalInformation(v string) {
+	o.AdditionalInformation = &v
+}
+
+// GetProprietaryBankTransactionCode returns the ProprietaryBankTransactionCode field value if set, zero value otherwise.
+func (o *AccountTransaction) GetProprietaryBankTransactionCode() string {
+	if o == nil || o.ProprietaryBankTransactionCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProprietaryBankTransactionCode
+}
+
+// GetProprietaryBankTransactionCodeOk returns a tuple with the ProprietaryBankTransactionCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetProprietaryBankTransactionCodeOk() (*string, bool) {
+	if o == nil || o.ProprietaryBankTransactionCode == nil {
+		return nil, false
+	}
+	return o.ProprietaryBankTransactionCode, true
+}
+
+// HasProprietaryBankTransactionCode returns a boolean if a field has been set.
+func (o *AccountTransaction) HasProprietaryBankTransactionCode() bool {
+	if o != nil && o.ProprietaryBankTransactionCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProprietaryBankTransactionCode gets a reference to the given string and assigns it to the ProprietaryBankTransactionCode field.
+func (o *AccountTransaction) SetProprietaryBankTransactionCode(v string) {
+	o.ProprietaryBankTransactionCode = &v
+}
+
+// GetUltimateCreditor returns the UltimateCreditor field value if set, zero value otherwise.
+func (o *AccountTransaction) GetUltimateCreditor() string {
+	if o == nil || o.UltimateCreditor == nil {
+		var ret string
+		return ret
+	}
+	return *o.UltimateCreditor
+}
+
+// GetUltimateCreditorOk returns a tuple with the UltimateCreditor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetUltimateCreditorOk() (*string, bool) {
+	if o == nil || o.UltimateCreditor == nil {
+		return nil, false
+	}
+	return o.UltimateCreditor, true
+}
+
+// HasUltimateCreditor returns a boolean if a field has been set.
+func (o *AccountTransaction) HasUltimateCreditor() bool {
+	if o != nil && o.UltimateCreditor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUltimateCreditor gets a reference to the given string and assigns it to the UltimateCreditor field.
+func (o *AccountTransaction) SetUltimateCreditor(v string) {
+	o.UltimateCreditor = &v
+}
+
+// GetUltimateDebtor returns the UltimateDebtor field value if set, zero value otherwise.
+func (o *AccountTransaction) GetUltimateDebtor() string {
+	if o == nil || o.UltimateDebtor == nil {
+		var ret string
+		return ret
+	}
+	return *o.UltimateDebtor
+}
+
+// GetUltimateDebtorOk returns a tuple with the UltimateDebtor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountTransaction) GetUltimateDebtorOk() (*string, bool) {
+	if o == nil || o.UltimateDebtor == nil {
+		return nil, false
+	}
+	return o.UltimateDebtor, true
+}
+
+// HasUltimateDebtor returns a boolean if a field has been set.
+func (o *AccountTransaction) HasUltimateDebtor() bool {
+	if o != nil && o.UltimateDebtor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUltimateDebtor gets a reference to the given string and assigns it to the UltimateDebtor field.
+func (o *AccountTransaction) SetUltimateDebtor(v string) {
+	o.UltimateDebtor = &v
+}
+
 func (o AccountTransaction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.TransactionId != nil {
 		toSerialize["transactionId"] = o.TransactionId
+	}
+	if o.EntryReference != nil {
+		toSerialize["entryReference"] = o.EntryReference
+	}
+	if o.CheckId != nil {
+		toSerialize["checkId"] = o.CheckId
+	}
+	if o.CreditorId != nil {
+		toSerialize["creditorId"] = o.CreditorId
+	}
+	if o.CreditorName != nil {
+		toSerialize["creditorName"] = o.CreditorName
+	}
+	if o.CreditorAccount != nil {
+		toSerialize["creditorAccount"] = o.CreditorAccount
 	}
 	if o.DebtorName != nil {
 		toSerialize["debtorName"] = o.DebtorName
@@ -323,8 +701,26 @@ func (o AccountTransaction) MarshalJSON() ([]byte, error) {
 	if o.ValueDate != nil {
 		toSerialize["valueDate"] = o.ValueDate
 	}
+	if o.MandateId != nil {
+		toSerialize["mandateId"] = o.MandateId
+	}
+	if o.PurposeCode != nil {
+		toSerialize["purposeCode"] = o.PurposeCode
+	}
 	if o.RemittanceInformationUnstructured != nil {
 		toSerialize["remittanceInformationUnstructured"] = o.RemittanceInformationUnstructured
+	}
+	if o.AdditionalInformation != nil {
+		toSerialize["additionalInformation"] = o.AdditionalInformation
+	}
+	if o.ProprietaryBankTransactionCode != nil {
+		toSerialize["proprietaryBankTransactionCode"] = o.ProprietaryBankTransactionCode
+	}
+	if o.UltimateCreditor != nil {
+		toSerialize["ultimateCreditor"] = o.UltimateCreditor
+	}
+	if o.UltimateDebtor != nil {
+		toSerialize["ultimateDebtor"] = o.UltimateDebtor
 	}
 	return json.Marshal(toSerialize)
 }

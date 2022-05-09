@@ -3350,6 +3350,16 @@ components:
       properties:
         transactionId:
           type: string
+        entryReference:
+          type: string
+        checkId:
+          type: string
+        creditorId:
+          type: string
+        creditorName:
+          type: string
+        creditorAccount:
+          $ref: '#/components/schemas/AccountTransaction_creditorAccount'
         debtorName:
           type: string
         debtorAccount:
@@ -3364,7 +3374,19 @@ components:
         valueDate:
           format: date-time
           type: string
+        mandateId:
+          type: string
+        purposeCode:
+          type: string
         remittanceInformationUnstructured:
+          type: string
+        additionalInformation:
+          type: string
+        proprietaryBankTransactionCode:
+          type: string
+        ultimateCreditor:
+          type: string
+        ultimateDebtor:
           type: string
       type: object
     AccountTransactionResponse:
@@ -4338,11 +4360,21 @@ components:
         currency:
           type: string
       type: object
+    AccountTransaction_creditorAccount:
+      example:
+        iban: iban
+      properties:
+        iban:
+          type: string
+        bban:
+          type: string
     AccountTransaction_debtorAccount:
       example:
         iban: iban
       properties:
         iban:
+          type: string
+        bban:
           type: string
       type: object
     AccountTransaction_transactionAmount:

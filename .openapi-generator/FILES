@@ -17,6 +17,7 @@ model_account_balances_response.go
 model_account_detail.go
 model_account_detail_response.go
 model_account_transaction.go
+model_account_transaction_creditor_account.go
 model_account_transaction_debtor_account.go
 model_account_transaction_response.go
 model_account_transaction_response_transactions.go

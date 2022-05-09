@@ -14,31 +14,31 @@ import (
 	"encoding/json"
 )
 
-// AccountTransactionDebtorAccount struct for AccountTransactionDebtorAccount
-type AccountTransactionDebtorAccount struct {
+// AccountTransactionCreditorAccount struct for AccountTransactionCreditorAccount
+type AccountTransactionCreditorAccount struct {
 	Iban *string `json:"iban,omitempty"`
 	Bban *string `json:"bban,omitempty"`
 }
 
-// NewAccountTransactionDebtorAccount instantiates a new AccountTransactionDebtorAccount object
+// NewAccountTransactionCreditorAccount instantiates a new AccountTransactionCreditorAccount object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountTransactionDebtorAccount() *AccountTransactionDebtorAccount {
-	this := AccountTransactionDebtorAccount{}
+func NewAccountTransactionCreditorAccount() *AccountTransactionCreditorAccount {
+	this := AccountTransactionCreditorAccount{}
 	return &this
 }
 
-// NewAccountTransactionDebtorAccountWithDefaults instantiates a new AccountTransactionDebtorAccount object
+// NewAccountTransactionCreditorAccountWithDefaults instantiates a new AccountTransactionCreditorAccount object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAccountTransactionDebtorAccountWithDefaults() *AccountTransactionDebtorAccount {
-	this := AccountTransactionDebtorAccount{}
+func NewAccountTransactionCreditorAccountWithDefaults() *AccountTransactionCreditorAccount {
+	this := AccountTransactionCreditorAccount{}
 	return &this
 }
 
 // GetIban returns the Iban field value if set, zero value otherwise.
-func (o *AccountTransactionDebtorAccount) GetIban() string {
+func (o *AccountTransactionCreditorAccount) GetIban() string {
 	if o == nil || o.Iban == nil {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *AccountTransactionDebtorAccount) GetIban() string {
 
 // GetIbanOk returns a tuple with the Iban field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountTransactionDebtorAccount) GetIbanOk() (*string, bool) {
+func (o *AccountTransactionCreditorAccount) GetIbanOk() (*string, bool) {
 	if o == nil || o.Iban == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *AccountTransactionDebtorAccount) GetIbanOk() (*string, bool) {
 }
 
 // HasIban returns a boolean if a field has been set.
-func (o *AccountTransactionDebtorAccount) HasIban() bool {
+func (o *AccountTransactionCreditorAccount) HasIban() bool {
 	if o != nil && o.Iban != nil {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *AccountTransactionDebtorAccount) HasIban() bool {
 }
 
 // SetIban gets a reference to the given string and assigns it to the Iban field.
-func (o *AccountTransactionDebtorAccount) SetIban(v string) {
+func (o *AccountTransactionCreditorAccount) SetIban(v string) {
 	o.Iban = &v
 }
 
 // GetBban returns the Bban field value if set, zero value otherwise.
-func (o *AccountTransactionDebtorAccount) GetBban() string {
+func (o *AccountTransactionCreditorAccount) GetBban() string {
 	if o == nil || o.Bban == nil {
 		var ret string
 		return ret
@@ -80,7 +80,7 @@ func (o *AccountTransactionDebtorAccount) GetBban() string {
 
 // GetBbanOk returns a tuple with the Bban field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountTransactionDebtorAccount) GetBbanOk() (*string, bool) {
+func (o *AccountTransactionCreditorAccount) GetBbanOk() (*string, bool) {
 	if o == nil || o.Bban == nil {
 		return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *AccountTransactionDebtorAccount) GetBbanOk() (*string, bool) {
 }
 
 // HasBban returns a boolean if a field has been set.
-func (o *AccountTransactionDebtorAccount) HasBban() bool {
+func (o *AccountTransactionCreditorAccount) HasBban() bool {
 	if o != nil && o.Bban != nil {
 		return true
 	}
@@ -97,11 +97,11 @@ func (o *AccountTransactionDebtorAccount) HasBban() bool {
 }
 
 // SetBban gets a reference to the given string and assigns it to the Bban field.
-func (o *AccountTransactionDebtorAccount) SetBban(v string) {
+func (o *AccountTransactionCreditorAccount) SetBban(v string) {
 	o.Bban = &v
 }
 
-func (o AccountTransactionDebtorAccount) MarshalJSON() ([]byte, error) {
+func (o AccountTransactionCreditorAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Iban != nil {
 		toSerialize["iban"] = o.Iban
@@ -112,38 +112,38 @@ func (o AccountTransactionDebtorAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAccountTransactionDebtorAccount struct {
-	value *AccountTransactionDebtorAccount
+type NullableAccountTransactionCreditorAccount struct {
+	value *AccountTransactionCreditorAccount
 	isSet bool
 }
 
-func (v NullableAccountTransactionDebtorAccount) Get() *AccountTransactionDebtorAccount {
+func (v NullableAccountTransactionCreditorAccount) Get() *AccountTransactionCreditorAccount {
 	return v.value
 }
 
-func (v *NullableAccountTransactionDebtorAccount) Set(val *AccountTransactionDebtorAccount) {
+func (v *NullableAccountTransactionCreditorAccount) Set(val *AccountTransactionCreditorAccount) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAccountTransactionDebtorAccount) IsSet() bool {
+func (v NullableAccountTransactionCreditorAccount) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAccountTransactionDebtorAccount) Unset() {
+func (v *NullableAccountTransactionCreditorAccount) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAccountTransactionDebtorAccount(val *AccountTransactionDebtorAccount) *NullableAccountTransactionDebtorAccount {
-	return &NullableAccountTransactionDebtorAccount{value: val, isSet: true}
+func NewNullableAccountTransactionCreditorAccount(val *AccountTransactionCreditorAccount) *NullableAccountTransactionCreditorAccount {
+	return &NullableAccountTransactionCreditorAccount{value: val, isSet: true}
 }
 
-func (v NullableAccountTransactionDebtorAccount) MarshalJSON() ([]byte, error) {
+func (v NullableAccountTransactionCreditorAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAccountTransactionDebtorAccount) UnmarshalJSON(src []byte) error {
+func (v *NullableAccountTransactionCreditorAccount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
