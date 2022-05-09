@@ -102,7 +102,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		HTTPClient: http.DefaultClient,
 		DefaultHeader:    map[string]string{},
-		UserAgent:        "Nordigen Go v0.0.3",
+		UserAgent:        "Nordigen Go v0.0.4",
 		Debug:            false,
 			Servers:          ServerConfigurations{
 			{
