@@ -12,7 +12,6 @@ package nordigen
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // AccountTransaction struct for AccountTransaction
@@ -27,8 +26,8 @@ type AccountTransaction struct {
 	DebtorAccount *AccountTransactionDebtorAccount `json:"debtorAccount,omitempty"`
 	TransactionAmount *AccountTransactionTransactionAmount `json:"transactionAmount,omitempty"`
 	BankTransactionCode *string `json:"bankTransactionCode,omitempty"`
-	BookingDate *time.Time `json:"bookingDate,omitempty"`
-	ValueDate *time.Time `json:"valueDate,omitempty"`
+	BookingDate *string `json:"bookingDate,omitempty"`
+	ValueDate *string `json:"valueDate,omitempty"`
 	MandateId *string `json:"mandateId,omitempty"`
 	PurposeCode *string `json:"purposeCode,omitempty"`
 	RemittanceInformationUnstructured *string `json:"remittanceInformationUnstructured,omitempty"`
@@ -376,9 +375,9 @@ func (o *AccountTransaction) SetBankTransactionCode(v string) {
 }
 
 // GetBookingDate returns the BookingDate field value if set, zero value otherwise.
-func (o *AccountTransaction) GetBookingDate() time.Time {
+func (o *AccountTransaction) GetBookingDate() string {
 	if o == nil || o.BookingDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.BookingDate
@@ -386,7 +385,7 @@ func (o *AccountTransaction) GetBookingDate() time.Time {
 
 // GetBookingDateOk returns a tuple with the BookingDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountTransaction) GetBookingDateOk() (*time.Time, bool) {
+func (o *AccountTransaction) GetBookingDateOk() (*string, bool) {
 	if o == nil || o.BookingDate == nil {
 		return nil, false
 	}
@@ -402,15 +401,15 @@ func (o *AccountTransaction) HasBookingDate() bool {
 	return false
 }
 
-// SetBookingDate gets a reference to the given time.Time and assigns it to the BookingDate field.
-func (o *AccountTransaction) SetBookingDate(v time.Time) {
+// SetBookingDate gets a reference to the given string and assigns it to the BookingDate field.
+func (o *AccountTransaction) SetBookingDate(v string) {
 	o.BookingDate = &v
 }
 
 // GetValueDate returns the ValueDate field value if set, zero value otherwise.
-func (o *AccountTransaction) GetValueDate() time.Time {
+func (o *AccountTransaction) GetValueDate() string {
 	if o == nil || o.ValueDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.ValueDate
@@ -418,7 +417,7 @@ func (o *AccountTransaction) GetValueDate() time.Time {
 
 // GetValueDateOk returns a tuple with the ValueDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountTransaction) GetValueDateOk() (*time.Time, bool) {
+func (o *AccountTransaction) GetValueDateOk() (*string, bool) {
 	if o == nil || o.ValueDate == nil {
 		return nil, false
 	}
@@ -434,8 +433,8 @@ func (o *AccountTransaction) HasValueDate() bool {
 	return false
 }
 
-// SetValueDate gets a reference to the given time.Time and assigns it to the ValueDate field.
-func (o *AccountTransaction) SetValueDate(v time.Time) {
+// SetValueDate gets a reference to the given string and assigns it to the ValueDate field.
+func (o *AccountTransaction) SetValueDate(v string) {
 	o.ValueDate = &v
 }
 

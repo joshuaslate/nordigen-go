@@ -3210,7 +3210,7 @@ components:
         balanceType:
           type: string
         referenceDate:
-          format: YYYY-MM-DD
+          format: date
           type: string
         creditLimitIncluded:
           description: A flag indicating if the credit limit of the corresponding
@@ -3369,10 +3369,10 @@ components:
         bankTransactionCode:
           type: string
         bookingDate:
-          format: date-time
+          format: date
           type: string
         valueDate:
-          format: date-time
+          format: date
           type: string
         mandateId:
           type: string
